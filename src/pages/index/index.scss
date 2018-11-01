@@ -1,9 +1,22 @@
-.container .sub-title {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 40px;
-  color: #666;
-  margin: 0 0 10px;
-  margin-top: 20px;
+.container {
+  .title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    margin-top: 1.5rem;
+  }
+  .sub-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: #999;
+  }
+  .list{
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap ;
+  }
 }

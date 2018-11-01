@@ -1,0 +1,15 @@
+.fool {
+    margin-top: 80px;
+    .tail{
+        width: 100%;
+        background-color: rgba(30, 176, 236, 1);
+        padding: 20px;
+        .tail-title{
+            // margin-top: 20px;
+            font-size: 0.8rem;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+        }
+    }
+}
