@@ -1,0 +1,30 @@
+.head {
+    display: flex;
+    .left {
+      width: 30%;
+      .logo {
+        margin-left: 40px;
+        margin-top: 40px;
+        width: 150px;
+        height: 150px;
+      }
+    }
+  
+    .right {
+      display: flex;
+      width: 70%;
+      // flex-direction: row-reverse;
+      justify-content: flex-end;
+      // align-items: enter;
+      height: 100px;
+      button {
+          height: 60px;
+          background-color: #ffffff;
+          color: rgba(30, 176, 236, 1);
+          margin-top: 80px;
+          margin-left: 0;
+          margin-right: 20px;
+      }
+    }
+  }
+  
