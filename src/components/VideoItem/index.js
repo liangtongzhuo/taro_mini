@@ -10,7 +10,7 @@ export default class VideoItem extends Component {
   }
   onClick() {
     Taro.navigateTo({
-      url: "pages/Classroom/index"
+      url: "/pages/classroom/index"
     });
   }
   render() {
