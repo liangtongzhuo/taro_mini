@@ -1,16 +1,42 @@
 .fool {
-    margin-top: 80px;
-    .tail{
-        width: 100%;
-        box-sizing: border-box;
-        background-color: rgba(30, 176, 236, 1);
-        padding: 20px;
-        .tail-title{
-            // margin-top: 20px;
-            font-size: 0.8rem;
-            display: block;
-            color: #ffffff;
-            text-align: center;
-        }
+  margin-top: 80px;
+  .tail {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(30, 176, 236, 1);
+    padding: 20px;
+    .tail-title {
+      // margin-top: 20px;
+      font-size: 0.8rem;
+      display: block;
+      color: #ffffff;
+      text-align: center;
     }
+  }
+  @media screen and (min-width: 400px) {
+    margin-top: 10px !important;
+    .at-grid {
+      height: 80px !important;
+      overflow: hidden;
+    }
+    .at-grid-item--rect::before {
+        padding-bottom: 70px;
+    }
+    .content-inner__img {
+      width: 25px !important;
+      height: 25px !important;
+    }
+    .content-inner__text {
+      font-size: 10px;
+      margin-top: 13px;
+    }
+    .tail {
+      width: 150%;
+      margin-left: -25%;
+      padding: 10px;
+      .tail-title {
+        font-size: 10px;
+      }
+    }
+  }
 }

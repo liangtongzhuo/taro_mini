@@ -1,11 +1,12 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View,  Text } from "@tarojs/components";
+import { View, Text } from "@tarojs/components";
 import { AtForm, AtInput, AtButton } from "taro-ui";
 
 import Head from "../../components/Head";
 import Fool from "../../components/Fool";
 
 import "./index.scss";
+import "../../form.scss";
 
 export default class Login extends Component {
   config = {

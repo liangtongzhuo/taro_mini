@@ -27,9 +27,37 @@
       background-color: #ffffff;
       color: #1eb0ec;
     }
+    button:after {
+      border-color:  #1eb0ec;
+    }
     #click-button {
       background-color: #1eb0ec;
       color: #ffffff;
+    }
+  }
+
+  // 大于 400 pc 端了
+  @media screen and (min-width: 400px) {
+    .title {
+      font-size: 17px !important;
+      margin-top: 20px !important;
+    }
+    .sub-title {
+      font-size: 11px !important;
+    }
+    .list {
+      margin-top: 5px !important;
+    }
+    .button-list {
+      margin-top: 0px !important;
+      button {
+        margin: 0 10px 0 0;
+      }
+      button:after {
+        border-width: 0.03rem;
+      }
+      #click-button {
+      }
     }
   }
 }

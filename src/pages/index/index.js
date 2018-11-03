@@ -60,6 +60,13 @@ export default class Index extends Component {
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
+      },
+      {
+        url:
+          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+        title: "系列课程介绍案例",
+        views: 1111,
+        price: 499.0
       }
     ];
 
@@ -81,12 +88,12 @@ export default class Index extends Component {
           <SwiperItem>
             <Image className="banner" src={banner1} />
           </SwiperItem>
-          <SwiperItem>
+          {/* <SwiperItem>
             <Image className="banner" src={banner2} />
           </SwiperItem>
           <SwiperItem>
             <Image className="banner" src={banner1} />
-          </SwiperItem>
+          </SwiperItem> */}
         </Swiper>
 
         <Text className="title">鹏翔医学服务平台</Text>

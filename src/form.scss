@@ -1,0 +1,41 @@
+// 大于 400 pc 端了
+@media screen and (min-width: 400px) {
+  .card {
+    padding: 1rem 7rem 1rem 7rem !important;
+
+  }
+  .form {
+    padding-top: 0px !important;
+    .form-title {
+      font-size: 20px;
+    }
+    .at-input{
+      padding: 10px 0;
+    }
+    .at-input__title{
+      width: 60px;
+    }
+    .at-input__title {
+      font-size: 10px;
+    }
+    .qc-code {
+      font-size: 10px;
+    }
+    .at-input input {
+      font-size: 10px;
+    }
+    .at-button--normal {
+      font-size: 10px;
+      padding: 0 5px;
+    }
+    .at-button {
+      height: 20px;
+      line-height: 20px;
+      margin-top: 20px;
+    }
+    .findPassword {
+      font-size: 10px !important;
+      display: inline-block;
+    }
+  }
+}

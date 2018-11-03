@@ -39,3 +39,30 @@
     }
   }
 }
+
+@media screen and (min-width: 400px) {
+  .video-item {
+    width: 25% !important;
+    .item-content {
+      width: 95%;
+      .cover {
+        width: 100%;
+        height: 150px;
+      }
+      .item-title {
+        font-size: 13px;
+        padding-left: 10px;
+      }
+      .title-group {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+        .playback span {
+          margin-top: -3px;
+        }
+      }
+    }
+  }
+}

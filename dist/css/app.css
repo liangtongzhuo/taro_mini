@@ -2,6 +2,24 @@ button:hover {
   color: #fff !important;
   background-color: #1eb0ec !important;
 }
+
+.card {
+  background: url(http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg) no-repeat center;
+  background-size: 100% 100%;
+}
+
+@media screen and (min-width: 400px) {
+  .taro_router {
+    width: 21.33333rem;
+    margin-right: auto;
+    margin-left: auto;
+    position: inherit;
+  }
+
+  .taro_page {
+    position: inherit;
+  }
+}
 .head {
   display: -webkit-flex;
   display: flex;
@@ -24,20 +42,41 @@ button:hover {
   width: 70%;
   -webkit-justify-content: flex-end;
           justify-content: flex-end;
+  -webkit-align-items: center;
+          align-items: center;
   height: 2.13333rem;
 }
 
 .head .right button {
-  height: 2.13333rem;
   background-color: #ffffff;
   color: #1eb0ec;
-  margin-top: 1.70667rem;
+  margin-top: 1.06667rem;
   margin-left: 0;
   margin-right: 0.42667rem;
 }
 
 .head .right button:after {
   border-color: #1eb0ec;
+}
+
+@media screen and (min-width: 400px) {
+  .head .logo {
+    margin-left: 0 !important;
+    margin-top: 0.42667rem !important;
+    width: 1.49333rem !important;
+    height: 1.49333rem !important;
+  }
+
+  .head .right button {
+    background-color: #ffffff;
+    color: #1eb0ec;
+    margin-top: 0 !important;
+    margin-right: 0.21333rem !important;
+  }
+
+  .head .right button:after {
+    border-width: 0.04267rem;
+  }
 }
 .video-item {
   width: 50%;
@@ -88,6 +127,38 @@ button:hover {
 .video-item .item-content .title-group .price {
   color: #1eb0ec;
 }
+
+@media screen and (min-width: 400px) {
+  .video-item {
+    width: 25% !important;
+  }
+
+  .video-item .item-content {
+    width: 95%;
+  }
+
+  .video-item .item-content .cover {
+    width: 100%;
+    height: 3.2rem;
+  }
+
+  .video-item .item-content .item-title {
+    font-size: 0.27733rem;
+    padding-left: 0.21333rem;
+  }
+
+  .video-item .item-content .title-group {
+    margin-top: 0.21333rem;
+    margin-bottom: 0.21333rem;
+    padding-left: 0.21333rem;
+    padding-right: 0.21333rem;
+    font-size: 0.32rem;
+  }
+
+  .video-item .item-content .title-group .playback span {
+    margin-top: -0.064rem;
+  }
+}
 .fool {
   margin-top: 1.70667rem;
 }
@@ -104,6 +175,41 @@ button:hover {
   display: block;
   color: #ffffff;
   text-align: center;
+}
+
+@media screen and (min-width: 400px) {
+  .fool {
+    margin-top: 0.21333rem !important;
+  }
+
+  .fool .at-grid {
+    height: 1.70667rem !important;
+    overflow: hidden;
+  }
+
+  .fool .at-grid-item--rect::before {
+    padding-bottom: 1.49333rem;
+  }
+
+  .fool .content-inner__img {
+    width: 0.53333rem !important;
+    height: 0.53333rem !important;
+  }
+
+  .fool .content-inner__text {
+    font-size: 0.21333rem;
+    margin-top: 0.27733rem;
+  }
+
+  .fool .tail {
+    width: 150%;
+    margin-left: -25%;
+    padding: 0.21333rem;
+  }
+
+  .fool .tail .tail-title {
+    font-size: 0.21333rem;
+  }
 }
 .container .title {
   display: block;
@@ -141,9 +247,40 @@ button:hover {
   color: #1eb0ec;
 }
 
+.container .button-list button:after {
+  border-color: #1eb0ec;
+}
+
 .container .button-list #click-button {
   background-color: #1eb0ec;
   color: #ffffff;
+}
+
+@media screen and (min-width: 400px) {
+  .container .title {
+    font-size: 0.36267rem !important;
+    margin-top: 0.42667rem !important;
+  }
+
+  .container .sub-title {
+    font-size: 0.23467rem !important;
+  }
+
+  .container .list {
+    margin-top: 0.10667rem !important;
+  }
+
+  .container .button-list {
+    margin-top: 0 !important;
+  }
+
+  .container .button-list button {
+    margin: 0 0.21333rem 0 0;
+  }
+
+  .container .button-list button:after {
+    border-width: 0.03rem;
+  }
 }
 .classroom .img {
   width: 100%;
@@ -260,6 +397,55 @@ button:hover {
 .login .card .form .findPassword {
   color: #1eb0ec;
   font-size: 0.7rem;
+}
+@media screen and (min-width: 400px) {
+  .card {
+    padding: 1rem 7rem 1rem 7rem !important;
+  }
+
+  .form {
+    padding-top: 0 !important;
+  }
+
+  .form .form-title {
+    font-size: 0.42667rem;
+  }
+
+  .form .at-input {
+    padding: 0.21333rem 0;
+  }
+
+  .form .at-input__title {
+    width: 1.28rem;
+  }
+
+  .form .at-input__title {
+    font-size: 0.21333rem;
+  }
+
+  .form .qc-code {
+    font-size: 0.21333rem;
+  }
+
+  .form .at-input input {
+    font-size: 0.21333rem;
+  }
+
+  .form .at-button--normal {
+    font-size: 0.21333rem;
+    padding: 0 0.10667rem;
+  }
+
+  .form .at-button {
+    height: 0.42667rem;
+    line-height: 0.42667rem;
+    margin-top: 0.42667rem;
+  }
+
+  .form .findPassword {
+    font-size: 0.21333rem !important;
+    display: inline-block;
+  }
 }
 .register .card {
   background-color: #efefef;

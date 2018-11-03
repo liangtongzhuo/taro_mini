@@ -1,6 +1,7 @@
 import AV from "leancloud-storage";
 import "@tarojs/async-await";
 import Taro, { Component } from "@tarojs/taro";
+
 import Index from "./pages/index";
 import "./app.scss";
 
@@ -15,7 +16,7 @@ class App extends Component {
       "/pages/classroom/index",
       "/pages/login/index",
       "/pages/register/index",
-      "/pages/findPassword/index",
+      "/pages/findPassword/index"
     ],
     window: {
       backgroundTextStyle: "light",
