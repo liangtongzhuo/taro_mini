@@ -13,7 +13,7 @@ do
 	  echo "up-to-date"
 	else
 	  git checkout master
-	  git pull && npm install && taro build --type h5
+	  git pull 
 	fi	
   sleep 30 #每 30 秒循环一次
 done
