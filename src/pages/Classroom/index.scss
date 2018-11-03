@@ -28,5 +28,59 @@
         }
       }
     }
+    // 滚动标题
+    .at-tabs__item {
+      font-size: 0.8rem;
+      color: #1eb0ec;
+    }
+    .at-tabs__item--active::after {
+      background-color: #1eb0ec;
+    }
+    //翻页基础
+    .tab-base {
+      padding: 1.5rem 0.8rem;
+      color: #333333;
+      font-size: 0.8rem;
+    }
+    // 课程目录
+    .schedule .class-title {
+      padding-bottom: 0.3rem;
+      display: inline-block;
+      width: 100%;
+    }
+    // 留言板
+    .message-board {
+      text-align: right;
+      button {
+        margin-top: 20px;
+        background-color: #1eb0ec;
+        color: #fff;
+      }
+
+      .message-list {
+        text-align: left;
+        .message-item {
+          .message-left {
+            display: inline-block;
+            width: 13%;
+          }
+          .message-right {
+            display: inline-block;
+            width: 87%;
+            // padding: 20px;
+            .message-name {
+              display: flex;
+              justify-content: space-between;
+              span {
+                font-size: 0.7rem;
+                color: #999;
+                margin-top: 0.5rem;
+                margin-bottom: 0.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

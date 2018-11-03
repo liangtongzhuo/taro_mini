@@ -1,11 +1,15 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Image, Text } from "@tarojs/components";
-import { AtTabs, AtTabsPane } from "taro-ui";
+import { View, Text, Image, Video, RichText, Button } from "@tarojs/components";
+import { AtTabs, AtTabsPane, AtTextarea, AtAvatar } from "taro-ui";
 
 import Head from "../../components/Head";
 import Fool from "../../components/Fool";
 import "./index.scss";
-
+const ss = `《课程与教学理论前沿问题研究》<br />
+课程简介 课程名称:
+课程与教学理论前沿问题研究 
+课程类别:公共专业选修课 
+适用专业:课程与教学论专业(含学科课程与...`;
 export default class Classroom extends Component {
   config = {
     navigationBarTitleText: "课程详情列表"
@@ -13,12 +17,18 @@ export default class Classroom extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      current: 0
+      current: 0,
+      value: ""
     };
   }
   handleClick(value) {
     this.setState({
       current: value
+    });
+  }
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
     });
   }
 
@@ -34,8 +44,9 @@ export default class Classroom extends Component {
 
   render() {
     const tabList = [
-      { title: "标签页1" },
-      { title: "标签页2" },
+      { title: "课程介绍" },
+      { title: "课程目录" },
+      { title: "全部评论" }
     ];
 
     return (
@@ -47,9 +58,18 @@ export default class Classroom extends Component {
         />
         <View className="content">
           <View className="card">
-            <Image
+            {/* <Image
               className="cover"
               src="https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp"
+            /> */}
+            <Video
+              src="http://www.bestthinkers.cn/weike/joanna/anli/六顶思考帽课程介绍 - Joanna.mp4"
+              autoplay={false}
+              poster="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+              initialTime="0"
+              id="video"
+              loop={false}
+              muted={false}
             />
             <Text className="title">系列课程介绍案例</Text>
             <Text className="sub-title">
@@ -68,19 +88,80 @@ export default class Classroom extends Component {
               onClick={this.handleClick.bind(this)}
             >
               <AtTabsPane current={this.state.current} index={0}>
-                <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
-                  标签页一的内容
+                <View className="tab-base">
+                  <RichText nodes={ss} />
                 </View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={1}>
-                <View style="padding: 100px 50px;background-color: #FAFBFC;text-align: center;">
-                  标签页二的内容
+                <View className="tab-base schedule">
+                  <Text className="class-title">
+                    六顶思考帽学习导读 （17:49）
+                  </Text>
+                  <Text className="class-title">
+                    第一讲：六顶思考帽之白帽：分析处理信息的技巧 （14:13）
+                  </Text>
+                  <Text className="class-title">
+                    第二讲：六顶思考帽之红帽：感觉、直觉和本能反应（15:12）
+                  </Text>
+                  <Text className="class-title">
+                    第三讲：六顶思考帽之黄帽与黑帽：发现机会与控制风险（14:57）
+                  </Text>
+                  <Text className="class-title">
+                    第四讲：六顶思考帽之绿帽：获取创造性解决方案 （13:54）
+                  </Text>
+                  <Text className="class-title">
+                    第五讲：六顶思考帽之蓝帽：思维组织与管理 （13:03）
+                  </Text>
+                </View>
+              </AtTabsPane>
+              <AtTabsPane current={this.state.current} index={2}>
+                <View className="tab-base message-board">
+                  <AtTextarea
+                    value={this.state.value}
+                    onChange={this.handleChange.bind(this)}
+                    maxlength="100"
+                    placeholder="说说你的看法..."
+                  />
+                  <Button size="mini">按钮</Button>
+
+                  <View className="message-list">
+                    <View className="message-item">
+                      <View>
+                        <View className="message-left">
+                          <AtAvatar circle image="https://jdc.jd.com/img/200" />
+                        </View>
+                        <View className="message-right">
+                          <View className="message-name">
+                            <Text>梁晓明</Text>
+                            <Text>2018/9/30 20:8</Text>
+                          </View>
+                          <Text className="message -content">
+                            哇塞真的学到了很多啊
+                          </Text>
+                        </View>
+                      </View>
+                 
+                      <View>
+                        <View className="message-left">
+                          <AtAvatar circle image="https://jdc.jd.com/img/200" />
+                        </View>
+                        <View className="message-right">
+                          <View className="message-name">
+                            <Text>梁晓明</Text>
+                            <Text>2018/9/30 20:8</Text>
+                          </View>
+                          <Text className="message -content">
+                            哇塞真的学到了很多啊
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
                 </View>
               </AtTabsPane>
             </AtTabs>
           </View>
         </View>
-
         <Fool />
       </View>
     );

@@ -1,5 +1,13 @@
 import Taro, { Component } from "@tarojs/taro";
-import { Swiper, SwiperItem, View, Image, Text } from "@tarojs/components";
+import {
+  Swiper,
+  SwiperItem,
+  View,
+  Image,
+  Text,
+  ScrollView,
+  Button
+} from "@tarojs/components";
 import Head from "../../components/Head";
 import VideoItem from "../../components/VideoItem";
 import Fool from "../../components/Fool";
@@ -81,8 +89,24 @@ export default class Index extends Component {
           </SwiperItem>
         </Swiper>
 
-        <Text className="title">上海鹏翔医学科技有限公司</Text>
+        <Text className="title">鹏翔医学服务平台</Text>
         <Text className="sub-title">在线学习</Text>
+
+        <View className="button-list">
+          <Button id="click-button" size="mini" type="primary">
+            全部课程
+          </Button>
+          <Button size="mini" type="primary">
+            临床研究培训
+          </Button>
+          <Button size="mini" type="primary">
+            基础研究培训
+          </Button>
+          <Button size="mini" type="primary">
+            综合研究培训
+          </Button>
+        </View>
+
         {/* 视频列表 */}
         <View className="list">{VideoItems}</View>
         <Fool />

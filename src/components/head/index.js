@@ -4,18 +4,36 @@ import logo from "../../images/logo.png";
 import "./index.scss";
 
 export default class Head extends Component {
-  onClick() {}
+  onLogin() {
+    Taro.navigateTo({
+      url: "/pages/login/index"
+    });
+  }
+  onRegister() {
+    Taro.navigateTo({
+      url: "/pages/register/index"
+    });
+  }
+  onHome() {
+    Taro.navigateTo({
+      url: "/pages/index/index"
+    });
+  }
   render() {
     return (
       <View className="head">
-        <View className="left">
+        <View className="left" onClick={this.onHome.bind(this)}>
           <Image className="logo" src={logo} />
         </View>
         <View className="right">
-          <Button onClick={this.onClick.bind(this)} size="mini" type="primary">
+          <Button onClick={this.onLogin.bind(this)} size="mini" type="primary">
             登录
           </Button>
-          <Button onClick={this.onClick.bind(this)} size="mini" type="primary">
+          <Button
+            onClick={this.onRegister.bind(this)}
+            size="mini"
+            type="primary"
+          >
             注册
           </Button>
         </View>
