@@ -10,14 +10,14 @@ button:hover {
 
 @media screen and (min-width: 400px) {
   .taro_router {
-    width: 21.33333rem;
-    margin-right: auto;
-    margin-left: auto;
-    position: inherit;
+    width: 21.33333rem !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    position: inherit !important;
   }
 
   .taro_page {
-    position: inherit;
+    position: inherit !important;
   }
 }
 .head {
@@ -188,7 +188,7 @@ button:hover {
   }
 
   .fool .at-grid-item--rect::before {
-    padding-bottom: 1.49333rem;
+    padding-bottom: 1.49333rem !important;
   }
 
   .fool .content-inner__img {
@@ -197,18 +197,18 @@ button:hover {
   }
 
   .fool .content-inner__text {
-    font-size: 0.21333rem;
+    font-size: 0.21333rem !important;
     margin-top: 0.27733rem;
   }
 
   .fool .tail {
-    width: 150%;
-    margin-left: -25%;
-    padding: 0.21333rem;
+    width: 150% !important;
+    margin-left: -25% !important;
+    padding: 0.21333rem !important;
   }
 
   .fool .tail .tail-title {
-    font-size: 0.21333rem;
+    font-size: 0.21333rem !important;
   }
 }
 .container .title {
@@ -408,43 +408,43 @@ button:hover {
   }
 
   .form .form-title {
-    font-size: 0.42667rem;
+    font-size: 0.42667rem !important;
   }
 
   .form .at-input {
-    padding: 0.21333rem 0;
+    padding: 0.21333rem 0 !important;
   }
 
   .form .at-input__title {
-    width: 1.28rem;
+    width: 1.28rem !important;
   }
 
   .form .at-input__title {
-    font-size: 0.21333rem;
+    font-size: 0.21333rem !important;
   }
 
   .form .qc-code {
-    font-size: 0.21333rem;
+    font-size: 0.21333rem !important;
   }
 
   .form .at-input input {
-    font-size: 0.21333rem;
+    font-size: 0.21333rem !important;
   }
 
   .form .at-button--normal {
-    font-size: 0.21333rem;
-    padding: 0 0.10667rem;
+    font-size: 0.21333rem !important;
+    padding: 0 0.10667rem !important;
   }
 
   .form .at-button {
-    height: 0.42667rem;
-    line-height: 0.42667rem;
-    margin-top: 0.42667rem;
+    height: 0.42667rem !important;
+    line-height: 0.42667rem !important;
+    margin-top: 0.42667rem !important;
   }
 
   .form .findPassword {
     font-size: 0.21333rem !important;
-    display: inline-block;
+    display: inline-block !important;
   }
 }
 .register .card {

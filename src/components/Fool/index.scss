@@ -20,22 +20,22 @@
       overflow: hidden;
     }
     .at-grid-item--rect::before {
-        padding-bottom: 70px;
+        padding-bottom: 70px !important;
     }
     .content-inner__img {
       width: 25px !important;
       height: 25px !important;
     }
     .content-inner__text {
-      font-size: 10px;
+      font-size: 10px !important;
       margin-top: 13px;
     }
     .tail {
-      width: 150%;
-      margin-left: -25%;
-      padding: 10px;
+      width: 150% !important;
+      margin-left: -25% !important;
+      padding: 10px !important;
       .tail-title {
-        font-size: 10px;
+        font-size: 10px !important;
       }
     }
   }

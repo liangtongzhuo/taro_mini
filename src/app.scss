@@ -12,14 +12,14 @@ button:hover {
 // 大于 400 pc 端了
 @media screen and (min-width: 400px) {
   .taro_router {
-    width: 1000px;
+    width: 1000px !important;
     // text-align: center;
     // overflow: hidden;
-    margin-right: auto;
-    margin-left: auto;
-    position: inherit;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    position: inherit !important;
   }
   .taro_page {
-    position: inherit;
+    position: inherit !important;
   }
 }

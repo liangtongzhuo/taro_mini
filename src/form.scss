@@ -6,35 +6,35 @@
   .form {
     padding-top: 0px !important;
     .form-title {
-      font-size: 20px;
+      font-size: 20px !important;
     }
     .at-input {
-      padding: 10px 0;
+      padding: 10px 0 !important;
     }
     .at-input__title {
-      width: 60px;
+      width: 60px !important;
     }
     .at-input__title {
-      font-size: 10px;
+      font-size: 10px !important;
     }
     .qc-code {
-      font-size: 10px;
+      font-size: 10px !important;
     }
     .at-input input {
-      font-size: 10px;
+      font-size: 10px !important;
     }
     .at-button--normal {
-      font-size: 10px;
-      padding: 0 5px;
+      font-size: 10px !important;
+      padding: 0 5px !important;
     }
     .at-button {
-      height: 20px;
-      line-height: 20px;
-      margin-top: 20px;
+      height: 20px !important;
+      line-height: 20px !important;
+      margin-top: 20px !important;
     }
     .findPassword {
       font-size: 10px !important;
-      display: inline-block;
+      display: inline-block !important;
     }
   }
 }
