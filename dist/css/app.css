@@ -3,11 +3,6 @@ button:hover {
   background-color: #1eb0ec !important;
 }
 
-.card {
-  background: url(http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg) no-repeat center;
-  background-size: 100% 100%;
-}
-
 @media screen and (min-width: 400px) {
   .taro_router {
     width: 21.33333rem !important;
@@ -380,6 +375,8 @@ button:hover {
 .login .card {
   background-color: #efefef;
   padding: 1.06667rem;
+  background: url(http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg) no-repeat center;
+  background-size: 100% 100%;
 }
 
 .login .card .form {
@@ -450,6 +447,8 @@ button:hover {
 .register .card {
   background-color: #efefef;
   padding: 1.06667rem;
+  background: url(http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg) no-repeat center;
+  background-size: 100% 100%;
 }
 
 .register .card .form {
@@ -466,6 +465,8 @@ button:hover {
 .find-password .card {
   background-color: #efefef;
   padding: 1.06667rem;
+  background: url(http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg) no-repeat center;
+  background-size: 100% 100%;
 }
 
 .find-password .card .form {
