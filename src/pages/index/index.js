@@ -35,35 +35,35 @@ export default class Index extends Component {
     const arr = [
       {
         url:
-          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
         url:
-          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
         url:
-          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
         url:
-          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
         url:
-          "https://i0.hdslb.com/bfs/archive/45f646677c5c269ec8682f075ba0d996edc4e667.jpg@320w_200h.webp",
+          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
