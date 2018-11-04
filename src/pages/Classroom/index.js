@@ -127,7 +127,7 @@ export default class Classroom extends Component {
                     maxlength="100"
                     placeholder="说说你的看法..."
                   />
-                  <Button size="mini">按钮</Button>
+                  <Button size="mini">发送</Button>
 
                   <View className="message-list">
                     <View className="message-item">
