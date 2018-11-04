@@ -28,7 +28,7 @@
       color: #1eb0ec;
     }
     button:after {
-      border-color:  #1eb0ec;
+      border-color: #1eb0ec;
     }
     #click-button {
       background-color: #1eb0ec;
@@ -58,6 +58,16 @@
       }
       #click-button {
       }
+    }
+
+    .swiper__container {
+      height: 350px !important;
+    }
+    .swiper__wrapper {
+      height: 350px !important;
+    }
+    .swiper__item {
+      height: 350px !important;
     }
   }
 }

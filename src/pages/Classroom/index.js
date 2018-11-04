@@ -32,13 +32,18 @@ export default class Classroom extends Component {
     });
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    
+  }
 
   componentDidMount() {}
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  componentDidShow() {
+    // 设置不可下载
+    document.getElementById("video").setAttribute("controlsList", "nodownload");
+  }
 
   componentDidHide() {}
 
@@ -48,7 +53,6 @@ export default class Classroom extends Component {
       { title: "课程目录" },
       { title: "全部评论" }
     ];
-
     return (
       <View className="classroom">
         <Head />
@@ -62,6 +66,7 @@ export default class Classroom extends Component {
               src="http://www.bestthinkers.cn/weike/joanna/anli/六顶思考帽课程介绍 - Joanna.mp4"
               autoplay={false}
               poster="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+              controlsList="nodownload"
               initialTime="0"
               id="video"
               loop={false}
@@ -73,7 +78,9 @@ export default class Classroom extends Component {
                 价格：
                 <Text className="price">66666 ¥</Text>
               </View>
-              <View className="sub-title" id="people">已经加入 999 人</View>
+              <View className="sub-title" id="people">
+                已经加入 999 人
+              </View>
             </View>
           </View>
         </View>
@@ -126,7 +133,10 @@ export default class Classroom extends Component {
                     <View className="message-item">
                       <View>
                         <View className="message-left">
-                          <AtAvatar circle image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg" />
+                          <AtAvatar
+                            circle
+                            image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+                          />
                         </View>
                         <View className="message-right">
                           <View className="message-name">
@@ -141,7 +151,10 @@ export default class Classroom extends Component {
 
                       <View>
                         <View className="message-left">
-                          <AtAvatar circle image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg" />
+                          <AtAvatar
+                            circle
+                            image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+                          />
                         </View>
                         <View className="message-right">
                           <View className="message-name">

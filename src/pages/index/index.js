@@ -5,8 +5,7 @@ import {
   View,
   Image,
   Text,
-  ScrollView,
-  Button
+  Button,
 } from "@tarojs/components";
 import Head from "../../components/Head";
 import VideoItem from "../../components/VideoItem";
@@ -21,7 +20,9 @@ export default class Index extends Component {
     navigationBarTitleText: "首页"
   };
 
-  componentWillMount() {}
+  componentWillMount() {
+
+  }
 
   componentDidMount() {}
 
@@ -34,36 +35,31 @@ export default class Index extends Component {
   render() {
     const arr = [
       {
-        url:
-          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
+        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
-        url:
-          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
+        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
-        url:
-          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
+        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
-        url:
-          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
+        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
       },
       {
-        url:
-          "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
+        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
         title: "系列课程介绍案例",
         views: 1111,
         price: 499.0
@@ -76,24 +72,26 @@ export default class Index extends Component {
     return (
       <View className="container">
         <Head />
+
         <Swiper
           className="swiper"
           indicatorColor="#fff"
-          indicatorActiveColor="rgba(30, 176, 236, 1)"
+          indicatorActiveColor="rgba(30, 176, 236, 1);"
+          
           vertical={false}
           circular
           indicatorDots
           autoplay
         >
-          <SwiperItem>
+          <SwiperItem style=" height:200px">
             <Image className="banner" src={banner1} />
           </SwiperItem>
-          {/* <SwiperItem>
+          <SwiperItem>
             <Image className="banner" src={banner2} />
           </SwiperItem>
           <SwiperItem>
             <Image className="banner" src={banner1} />
-          </SwiperItem> */}
+          </SwiperItem>
         </Swiper>
 
         <Text className="title">鹏翔医学服务平台</Text>

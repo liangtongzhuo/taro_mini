@@ -276,6 +276,18 @@ button:hover {
   .container .button-list button:after {
     border-width: 0.03rem;
   }
+
+  .container .swiper__container {
+    height: 7.46667rem !important;
+  }
+
+  .container .swiper__wrapper {
+    height: 7.46667rem !important;
+  }
+
+  .container .swiper__item {
+    height: 7.46667rem !important;
+  }
 }
 .classroom .img {
   width: 100%;
