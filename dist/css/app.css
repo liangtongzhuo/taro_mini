@@ -193,7 +193,7 @@ button:hover {
 
   .fool .content-inner__text {
     font-size: 0.21333rem !important;
-    margin-top: 0.27733rem;
+    margin-top: 0.27733rem !important;
   }
 
   .fool .tail {
