@@ -16,7 +16,7 @@ export default class Head extends Component {
   }
   onHome() {
     Taro.navigateTo({
-      url: "/pages/index/index"
+      url: "/"
     });
   }
   render() {

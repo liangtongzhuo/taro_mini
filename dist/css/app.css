@@ -446,32 +446,32 @@ button:hover {
   .classroom .content .message-board .at-textarea__bottom {
     font-size: 0.3rem;
   }
-}
 
-.classroom .message-board button {
-  margin-top: 0.42667rem;
-}
+  .classroom .message-board button {
+    margin-top: 0.42667rem;
+  }
 
-.classroom .message-board .message-list .message-item .message-left {
-  width: 8% !important;
-}
+  .classroom .message-board .message-list .message-item .message-left {
+    width: 8% !important;
+  }
 
-.classroom .message-board .message-list .message-item .message-left .at-avatar {
-  width: 1.06667rem !important;
-  height: 1.06667rem !important;
-  font-size: 0 !important;
-}
+  .classroom .message-board .message-list .message-item .message-left .at-avatar {
+    width: 1.06667rem !important;
+    height: 1.06667rem !important;
+    font-size: 0 !important;
+  }
 
-.classroom .message-board .message-list .message-item .message-right {
-  width: 92%;
-  font-size: 0.21333rem;
-}
+  .classroom .message-board .message-list .message-item .message-right {
+    width: 92%;
+    font-size: 0.21333rem;
+  }
 
-.classroom .message-board .message-list .message-item .message-right .message-name span {
-  font-size: 0.21333rem !important;
-  color: #999;
-  margin-top: 0.5rem;
-  margin-bottom: 0.2rem;
+  .classroom .message-board .message-list .message-item .message-right .message-name span {
+    font-size: 0.21333rem !important;
+    color: #999;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
 }
 .login .card {
   background-color: #efefef;

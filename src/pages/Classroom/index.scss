@@ -136,33 +136,32 @@
         }
       }
     }
-  }
+    // 留言板
+    .message-board {
+      button {
+        margin-top: 20px;
+      }
 
-  // 留言板
-  .message-board {
-    button {
-      margin-top: 20px;
-    }
-
-    .message-list {
-      .message-item {
-        .message-left {
-          width: 8% !important;
-          .at-avatar {
-            width: 50px !important;
-            height: 50px !important;
-            font-size: 0px !important;
+      .message-list {
+        .message-item {
+          .message-left {
+            width: 8% !important;
+            .at-avatar {
+              width: 50px !important;
+              height: 50px !important;
+              font-size: 0px !important;
+            }
           }
-        }
-        .message-right {
-          width: 92%;
-          font-size: 10px;
-          .message-name {
-            span {
-              font-size: 10px !important;
-              color: #999;
-              margin-top: 0.5rem;
-              margin-bottom: 0.2rem;
+          .message-right {
+            width: 92%;
+            font-size: 10px;
+            .message-name {
+              span {
+                font-size: 10px !important;
+                color: #999;
+                margin-top: 0.5rem;
+                margin-bottom: 0.2rem;
+              }
             }
           }
         }
@@ -170,5 +169,3 @@
     }
   }
 }
-
-
