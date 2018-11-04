@@ -293,11 +293,6 @@ button:hover {
   padding: 0.85333rem;
 }
 
-.classroom .content .card .cover {
-  width: 100%;
-  height: 12rem;
-}
-
 .classroom .content .card .title {
   font-size: 1.4rem;
   color: #333;
@@ -368,6 +363,100 @@ button:hover {
 
 .classroom .content .message-board .message-list .message-item .message-right .message-name span {
   font-size: 0.7rem;
+  color: #999;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+@media screen and (min-width: 400px) {
+  .classroom .img {
+    height: 6.4rem !important;
+  }
+
+  .classroom .content {
+    margin-top: -0.42667rem !important;
+    padding: 0.42667rem !important;
+  }
+
+  .classroom .content .card {
+    padding: 0.3rem !important;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .classroom .content .card video {
+    width: 50% !important;
+    height: 100% !important;
+  }
+
+  .classroom .content .card .right {
+    width: 50% !important;
+    line-height: 0.02133rem !important;
+    margin-left: 0.42667rem !important;
+  }
+
+  .classroom .content .card .right .title {
+    font-size: 0.42667rem !important;
+    line-height: 0.21333rem !important;
+  }
+
+  .classroom .content .card .right .sub-title {
+    font-size: 0.256rem !important;
+    margin-top: 0.85333rem !important;
+  }
+
+  .classroom .content .card .right .sub-title .price {
+    font-size: 0.256rem !important;
+  }
+
+  .classroom .content .card .right #people {
+    margin-top: 0.576rem !important;
+  }
+
+  .classroom .content .at-tabs__item {
+    font-size: 0.32rem !important;
+  }
+
+  .classroom .content .tab-base {
+    padding: 0.32rem 0.21333rem 0 0.21333rem !important;
+    font-size: 0.29867rem;
+  }
+
+  .classroom .content .message-board .at-textarea {
+    padding: 0 0.21333rem 0.064rem 0.21333rem !important;
+  }
+
+  .classroom .content .message-board .at-textarea__textarea {
+    font-size: 0.3rem;
+    height: 0.42667rem;
+  }
+
+  .classroom .content .message-board .at-textarea__bottom {
+    font-size: 0.3rem;
+  }
+}
+
+.classroom .message-board button {
+  margin-top: 0.42667rem;
+}
+
+.classroom .message-board .message-list .message-item .message-left {
+  width: 8% !important;
+}
+
+.classroom .message-board .message-list .message-item .message-left .at-avatar {
+  width: 1.06667rem !important;
+  height: 1.06667rem !important;
+  font-size: 0 !important;
+}
+
+.classroom .message-board .message-list .message-item .message-right {
+  width: 92%;
+  font-size: 0.21333rem;
+}
+
+.classroom .message-board .message-list .message-item .message-right .message-name span {
+  font-size: 0.21333rem !important;
   color: #999;
   margin-top: 0.5rem;
   margin-bottom: 0.2rem;
