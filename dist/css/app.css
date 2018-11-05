@@ -3,7 +3,7 @@ button:hover {
   background-color: #1eb0ec !important;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .taro_router {
     width: 21.33333rem !important;
     margin-right: auto !important;
@@ -54,7 +54,7 @@ button:hover {
   border-color: #1eb0ec;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .head .logo {
     margin-left: 0 !important;
     margin-top: 0.42667rem !important;
@@ -123,7 +123,7 @@ button:hover {
   color: #1eb0ec;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .video-item {
     width: 25% !important;
   }
@@ -172,7 +172,7 @@ button:hover {
   text-align: center;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .fool {
     margin-top: 0.21333rem !important;
   }
@@ -197,12 +197,14 @@ button:hover {
   }
 
   .fool .tail {
-    width: 150% !important;
+    width: 135.5% !important;
     margin-left: -25% !important;
     padding: 0.21333rem !important;
+    padding-left: 1.06667rem;
   }
 
   .fool .tail .tail-title {
+    margin-left: 10% !important;
     font-size: 0.21333rem !important;
   }
 }
@@ -251,7 +253,7 @@ button:hover {
   color: #ffffff;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .container .title {
     font-size: 0.36267rem !important;
     margin-top: 0.42667rem !important;
@@ -380,7 +382,7 @@ button:hover {
   margin-bottom: 0.2rem;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .classroom .img {
     height: 6.4rem !important;
   }
@@ -496,7 +498,7 @@ button:hover {
   color: #1eb0ec;
   font-size: 0.7rem;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 500px) {
   .card {
     padding: 1rem 7rem 1rem 7rem !important;
   }

@@ -1,12 +1,10 @@
 import AV from "leancloud-storage";
-import "@tarojs/async-await";
 import Taro, { Component } from "@tarojs/taro";
-
 import Index from "./pages/index";
 import "./app.scss";
 
-const appId = "U4D6TL1HgHHauvmmmhR7qNYA-gzGzoHsz";
-const appKey = "wbh3vxJVB72NUiX8sSkcOPzx";
+const appId = "8emScetGhjUYBVhVr5Px2WPq-gzGzoHsz";
+const appKey = "9FPFgVk7a18hC9FnYxQxfqs8";
 AV.init({ appId, appKey });
 
 class App extends Component {
@@ -28,11 +26,7 @@ class App extends Component {
 
   componentDidMount() {}
 
-  async componentDidShow() {
-    const query = new AV.Query("Atricle");
-    const data = await query.find();
-    console.log(data);
-  }
+  componentDidShow() {}
 
   componentDidHide() {}
 

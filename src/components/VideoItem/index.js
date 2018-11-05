@@ -10,21 +10,21 @@ export default class VideoItem extends Component {
   }
   onClick() {
     Taro.navigateTo({
-      url: "/pages/classroom/index"
+      url: "/pages/classroom/index?id=" + this.props.course.id
     });
   }
   render() {
     return (
       <View className="video-item" onClick={this.onClick.bind(this)}>
         <View className="item-content">
-          <Image className="cover" src={this.props.data.url} />
-          <Text className="item-title">{this.props.data.title}</Text>
+          <Image className="cover" src={this.props.course.get("cover")} />
+          <Text className="item-title">{this.props.course.get("title")}</Text>
           <View className="title-group">
             <Text className="playback">
               <AtIcon value="eye" className="eyeIcon" />
-              {this.props.data.views}
+              {this.props.course.get("views")}
             </Text>
-            <Text className="price">{this.props.data.price} ¥</Text>
+            <Text className="price">{this.props.course.get("price")} ¥</Text>
           </View>
         </View>
       </View>

@@ -1,15 +1,12 @@
+import AV from "leancloud-storage";
 import Taro, { Component } from "@tarojs/taro";
+import "@tarojs/async-await";
 import { View, Text, Image, Video, RichText, Button } from "@tarojs/components";
 import { AtTabs, AtTabsPane, AtTextarea, AtAvatar } from "taro-ui";
-
-import Head from "../../components/Head";
-import Fool from "../../components/Fool";
 import "./index.scss";
-const ss = `《课程与教学理论前沿问题研究》<br />
-课程简介 课程名称:
-课程与教学理论前沿问题研究 
-课程类别:公共专业选修课 
-适用专业:课程与教学论专业(含学科课程与...`;
+import Fool from "../../components/Fool";
+import Head from "../../components/Head";
+
 export default class Classroom extends Component {
   config = {
     navigationBarTitleText: "课程详情列表"
@@ -18,8 +15,11 @@ export default class Classroom extends Component {
     super(...arguments);
     this.state = {
       current: 0,
-      value: ""
+      value: "",
+      course: null,
+      courseId: this.$router.params.id
     };
+    console.log(this.$router.params);
   }
   handleClick(value) {
     this.setState({
@@ -32,11 +32,17 @@ export default class Classroom extends Component {
     });
   }
 
-  componentWillMount() {
-    
-  }
+  componentWillMount() {}
 
-  componentDidMount() {}
+  async componentDidMount() {
+    const Courses = new AV.Query("Courses");
+    try {
+      if (this.state.courseId) {
+        const course = await Courses.get(this.state.courseId);
+        this.setState({ course });
+      }
+    } catch (error) {}
+  }
 
   componentWillUnmount() {}
 
@@ -65,7 +71,7 @@ export default class Classroom extends Component {
             <Video
               src="http://www.bestthinkers.cn/weike/joanna/anli/六顶思考帽课程介绍 - Joanna.mp4"
               autoplay={false}
-              poster="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+              poster={this.state.course && this.state.course.get('cover')}
               controlsList="nodownload"
               initialTime="0"
               id="video"
@@ -73,13 +79,13 @@ export default class Classroom extends Component {
               muted={false}
             />
             <View className="right">
-              <Text className="title">系列课程介绍案例</Text>
+              <Text className="title">{this.state.course && this.state.course.get('title')}</Text>
               <View className="sub-title">
                 价格：
-                <Text className="price">66666 ¥</Text>
+                <Text className="price">{this.state.course && this.state.course.get('price')} ¥</Text>
               </View>
               <View className="sub-title" id="people">
-                已经加入 999 人
+                已经加入 {this.state.course && this.state.course.get('people')} 人
               </View>
             </View>
           </View>
@@ -94,7 +100,7 @@ export default class Classroom extends Component {
             >
               <AtTabsPane current={this.state.current} index={0}>
                 <View className="tab-base">
-                  <RichText nodes={ss} />
+                  <RichText nodes="《课程与教学理论前沿问题研究》<br />课程简介 课程名称:课程与教学理论前沿问题研究 课程类别:公共专业选修课 适用专业:课程与教学论专业(含学科课程与..." />
                 </View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={1}>

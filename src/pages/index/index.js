@@ -1,11 +1,13 @@
+import AV from "leancloud-storage";
 import Taro, { Component } from "@tarojs/taro";
+import "@tarojs/async-await";
 import {
   Swiper,
   SwiperItem,
   View,
   Image,
   Text,
-  Button,
+  Button
 } from "@tarojs/components";
 import Head from "../../components/Head";
 import VideoItem from "../../components/VideoItem";
@@ -19,65 +21,39 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: "首页"
   };
-
-  componentWillMount() {
-
+  constructor() {
+    super(...arguments);
+    this.state = {
+      courses: []
+    };
   }
+  componentWillMount() {}
 
   componentDidMount() {}
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  async componentDidShow() {
+    const Courses = new AV.Query("Courses");
+    try {
+      const courses = await Courses.find();
+      this.setState({ courses: courses });
+    } catch (error) {}
+  }
 
   componentDidHide() {}
 
   render() {
-    const arr = [
-      {
-        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
-        title: "系列课程介绍案例",
-        views: 1111,
-        price: 499.0
-      },
-      {
-        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
-        title: "系列课程介绍案例",
-        views: 1111,
-        price: 499.0
-      },
-      {
-        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
-        title: "系列课程介绍案例",
-        views: 1111,
-        price: 499.0
-      },
-      {
-        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
-        title: "系列课程介绍案例",
-        views: 1111,
-        price: 499.0
-      },
-      {
-        url: "http://file.liangtongzhuo.com/8147ce86b29d5ce98a29.jpeg",
-        title: "系列课程介绍案例",
-        views: 1111,
-        price: 499.0
-      }
-    ];
-
-    const VideoItems = arr.map((data, index) => (
-      <VideoItem key={index} data={data} />
+    const VideoItems = this.state.courses.map(course => (
+      <VideoItem key={course.id} course={course} />
     ));
     return (
       <View className="container">
         <Head />
-
         <Swiper
           className="swiper"
           indicatorColor="#fff"
           indicatorActiveColor="rgba(30, 176, 236, 1);"
-          
           vertical={false}
           circular
           indicatorDots
