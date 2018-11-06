@@ -17,7 +17,7 @@ export default class VideoItem extends Component {
     return (
       <View className="video-item" onClick={this.onClick.bind(this)}>
         <View className="item-content">
-          <Image className="cover" src={this.props.course.get("cover")} />
+          <Image className="cover" src={this.props.course.get("cover").url()} />
           <Text className="item-title">{this.props.course.get("title")}</Text>
           <View className="title-group">
             <Text className="playback">

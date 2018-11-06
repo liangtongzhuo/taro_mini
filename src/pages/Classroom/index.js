@@ -2,7 +2,7 @@ import AV from "leancloud-storage";
 import Taro, { Component } from "@tarojs/taro";
 import "@tarojs/async-await";
 import { View, Text, Image, Video, RichText, Button } from "@tarojs/components";
-import { AtTabs, AtTabsPane, AtTextarea, AtAvatar } from "taro-ui";
+import { AtTabs, AtTabsPane, AtTextarea, AtAvatar, AtToast } from "taro-ui";
 import "./index.scss";
 import Fool from "../../components/Fool";
 import Head from "../../components/Head";
@@ -17,7 +17,10 @@ export default class Classroom extends Component {
       current: 0,
       value: "",
       course: null,
-      courseId: this.$router.params.id
+      courseId: this.$router.params.id,
+      subVideos: [],
+      index: 0,
+      isOpened: false
     };
     console.log(this.$router.params);
   }
@@ -35,13 +38,23 @@ export default class Classroom extends Component {
   componentWillMount() {}
 
   async componentDidMount() {
-    const Courses = new AV.Query("Courses");
     try {
       if (this.state.courseId) {
+        const Courses = new AV.Query("Courses");
         const course = await Courses.get(this.state.courseId);
-        this.setState({ course });
+
+        // 查询课程下面的视频
+        const Sub_video = new AV.Query("Sub_video");
+        Sub_video.equalTo("course_id", course);
+        const sub_video = await Sub_video.find(this.state.courseId);
+        this.setState({ course, subVideos: sub_video });
       }
-    } catch (error) {}
+    } catch (error) {
+      this.setState({ isOpened: true });
+      setTimeout(() => {
+        this.setState({ isOpened: false });
+      }, 3000);
+    }
   }
 
   componentWillUnmount() {}
@@ -53,7 +66,39 @@ export default class Classroom extends Component {
 
   componentDidHide() {}
 
+  onClick(index) {
+    console.log(index);
+    this.setState({ index });
+  }
+
+  getCourse(name) {
+    if (this.state.course) {
+      if (name == "cover") {
+        return this.state.course.get(name).url();
+      }
+      return this.state.course.get(name);
+    }
+  }
+  getSubVideo(name) {
+    const subVideo = this.state.subVideos[this.state.index];
+    if (this.state.index != -1 && subVideo) {
+      if (name == "video") {
+        return subVideo.get(name).url();
+      }
+      return subVideo.get(name);
+    }
+  }
   render() {
+    const subVideosDOM = this.state.subVideos.map((item, index) => (
+      <Text
+        key={item.id}
+        onClick={this.onClick.bind(this, index)}
+        className="class-title"
+      >
+        {item.get("title")}
+      </Text>
+    ));
+
     const tabList = [
       { title: "课程介绍" },
       { title: "课程目录" },
@@ -69,9 +114,9 @@ export default class Classroom extends Component {
         <View className="content">
           <View className="card">
             <Video
-              src="http://www.bestthinkers.cn/weike/joanna/anli/六顶思考帽课程介绍 - Joanna.mp4"
+              src={this.getSubVideo("video")}
               autoplay={false}
-              poster={this.state.course && this.state.course.get('cover')}
+              poster={this.getCourse("cover")}
               controlsList="nodownload"
               initialTime="0"
               id="video"
@@ -79,14 +124,23 @@ export default class Classroom extends Component {
               muted={false}
             />
             <View className="right">
-              <Text className="title">{this.state.course && this.state.course.get('title')}</Text>
+              <Text className="title">{this.getCourse("title")}</Text>
               <View className="sub-title">
                 价格：
-                <Text className="price">{this.state.course && this.state.course.get('price')} ¥</Text>
+                <Text className="price">{this.getCourse("price")} ¥</Text>
               </View>
               <View className="sub-title" id="people">
-                已经加入 {this.state.course && this.state.course.get('people')} 人
+                已经加入
+                {this.getCourse("people")}人
               </View>
+              <View className="sub-title">
+                本节课标题：
+                {this.getSubVideo("title")}
+              </View>
+              <Text className="sub-title content" id="people">
+                本节课主要内容：
+                {this.getSubVideo("content")}
+              </Text>
             </View>
           </View>
         </View>
@@ -100,30 +154,15 @@ export default class Classroom extends Component {
             >
               <AtTabsPane current={this.state.current} index={0}>
                 <View className="tab-base">
-                  <RichText nodes="《课程与教学理论前沿问题研究》<br />课程简介 课程名称:课程与教学理论前沿问题研究 课程类别:公共专业选修课 适用专业:课程与教学论专业(含学科课程与..." />
+                  <RichText
+                    nodes={
+                      this.state.course && this.state.course.get("outline")
+                    }
+                  />
                 </View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={1}>
-                <View className="tab-base schedule">
-                  <Text className="class-title">
-                    六顶思考帽学习导读 （17:49）
-                  </Text>
-                  <Text className="class-title">
-                    第一讲：六顶思考帽之白帽：分析处理信息的技巧 （14:13）
-                  </Text>
-                  <Text className="class-title">
-                    第二讲：六顶思考帽之红帽：感觉、直觉和本能反应（15:12）
-                  </Text>
-                  <Text className="class-title">
-                    第三讲：六顶思考帽之黄帽与黑帽：发现机会与控制风险（14:57）
-                  </Text>
-                  <Text className="class-title">
-                    第四讲：六顶思考帽之绿帽：获取创造性解决方案 （13:54）
-                  </Text>
-                  <Text className="class-title">
-                    第五讲：六顶思考帽之蓝帽：思维组织与管理 （13:03）
-                  </Text>
-                </View>
+                <View className="tab-base schedule">{subVideosDOM}</View>
               </AtTabsPane>
               <AtTabsPane current={this.state.current} index={2}>
                 <View className="tab-base message-board">
@@ -179,6 +218,10 @@ export default class Classroom extends Component {
             </AtTabs>
           </View>
         </View>
+        <AtToast
+          isOpened={this.state.isOpened}
+          text="网络错误"
+        />
         <Fool />
       </View>
     );

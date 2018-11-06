@@ -24,7 +24,8 @@ export default class Index extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      courses: []
+      courses: [],
+      btnTitle: "全部课程"
     };
   }
   componentWillMount() {}
@@ -33,12 +34,24 @@ export default class Index extends Component {
 
   componentWillUnmount() {}
 
-  async componentDidShow() {
-    const Courses = new AV.Query("Courses");
+  componentDidShow() {
+    this.query(this.state.btnTitle);
+  }
+  // 请求数据
+  async query(name) {
     try {
+      const Courses = new AV.Query("Courses");
+      if (name != "全部课程") {
+        Courses.contains("tag", name);
+      }
       const courses = await Courses.find();
       this.setState({ courses: courses });
     } catch (error) {}
+  }
+  // 点击了按钮
+  onClick(name) {
+    this.setState({ btnTitle: name });
+    this.query(name);
   }
 
   componentDidHide() {}
@@ -74,16 +87,36 @@ export default class Index extends Component {
         <Text className="sub-title">在线学习</Text>
 
         <View className="button-list">
-          <Button id="click-button" size="mini" type="primary">
+          <Button
+            id={this.state.btnTitle === "全部课程" && "click-button"}
+            onClick={this.onClick.bind(this, "全部课程")}
+            size="mini"
+            type="primary"
+          >
             全部课程
           </Button>
-          <Button size="mini" type="primary">
+          <Button
+            id={this.state.btnTitle === "临床研究培训" && "click-button"}
+            onClick={this.onClick.bind(this, "临床研究培训")}
+            size="mini"
+            type="primary"
+          >
             临床研究培训
           </Button>
-          <Button size="mini" type="primary">
+          <Button
+            id={this.state.btnTitle === "基础研究培训" && "click-button"}
+            onClick={this.onClick.bind(this, "基础研究培训")}
+            size="mini"
+            type="primary"
+          >
             基础研究培训
           </Button>
-          <Button size="mini" type="primary">
+          <Button
+            id={this.state.btnTitle === "综合研究培训" && "click-button"}
+            onClick={this.onClick.bind(this, "综合研究培训")}
+            size="mini"
+            type="primary"
+          >
             综合研究培训
           </Button>
         </View>
