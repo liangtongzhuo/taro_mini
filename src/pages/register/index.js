@@ -20,7 +20,9 @@ export default class Register extends Component {
       name: "",
       phone: "",
       code: "",
-      pwd: ""
+      pwd: "",
+      time: 0,
+      interval: null
     };
   }
   handleChange(name, value) {
@@ -28,23 +30,49 @@ export default class Register extends Component {
       [name]: value
     });
   }
-
+  /**
+   * 发送验证码
+   */
   async onSendCode() {
-    if (this.state.phone.length != 11)
+    if (this.state.time != 0) {
+      this.setState({ isOpened: true, text: "等待 60 秒后再次尝试" });
+    } else if (this.state.phone.length != 11) {
       this.setState({ isOpened: true, text: "手机位数不对" });
-    try {
-      await AV.Cloud.requestSmsCode(this.state.phone);      
-      this.setState({ isOpened: true, text: "已发送验证码" });
-    } catch (error) {
-      console.log(error);
-      this.setState({ isOpened: true, text: "频率过多" });
+    } else {
+      try {
+        await AV.Cloud.requestSmsCode(this.state.phone);
+        this.setState({ isOpened: true, text: "已发送验证码" });
+        this.setTiem();
+      } catch (error) {
+        this.setState({ isOpened: true, text: "频率过多" });
+      }
     }
 
     setTimeout(() => {
       this.setState({ isOpened: false });
     }, 3000);
   }
-  onSubmit() {
+  setTiem() {
+    this.setState({
+      time: 60
+    });
+    this.interval = setInterval(() => {
+      if (this.state.time == 0) {
+        clearInterval(this.interval);
+      } else {
+        this.setState({
+          time: this.state.time - 1
+        });
+      }
+      console.log(this.state.time);
+    }, 1000);
+  }
+
+  /**
+   * 登录
+   */
+
+  async onSubmit() {
     if (this.state.name.length == 0)
       this.setState({ isOpened: true, text: "请输入名字" });
     else if (this.state.phone.length != 11)
@@ -53,10 +81,30 @@ export default class Register extends Component {
       this.setState({ isOpened: true, text: "验证码不正确" });
     else if (this.state.pwd.length == 0)
       this.setState({ isOpened: true, text: "请输入密码" });
+    else {
+      console.log(111, this.state.name.length);
+      try {
+        await AV.User.signUpOrlogInWithMobilePhone(
+          this.state.phone,
+          this.state.code
+        );
+        // 设置账号密码
+        const currentUser = AV.User.current();
+        currentUser.setUsername(this.state.phone);
+        currentUser.setPassword(this.state.pwd);
+        currentUser.set("name", this.state.name);
+        await currentUser.save();
+
+        Taro.navigateTo({
+          url: "/"
+        });
+      } catch (error) {
+        this.setState({ isOpened: true, text: "验证码不正确" });
+      }
+    }
 
     setTimeout(() => {
       this.setState({ isOpened: false });
-      console.log(11);
     }, 3000);
   }
 
@@ -96,7 +144,9 @@ export default class Register extends Component {
               onChange={this.handleChange.bind(this, "phone")}
             >
               <Text className="qc-code" onClick={this.onSendCode.bind(this)}>
-                发送验证码
+                {this.state.time == 0
+                  ? "发送验证码"
+                  : `等待 ${this.state.time} 再次发送`}
               </Text>
             </AtInput>
             <AtInput

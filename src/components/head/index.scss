@@ -16,6 +16,10 @@
     justify-content: flex-end;
     align-items: center;
     height: 100px;
+    span {
+      margin-top: 50px;
+      margin-right: 20px;
+    }
     button {
       // height: 100px;
       background-color: #ffffff;
@@ -38,13 +42,16 @@
     }
 
     .right {
+      span {
+        font-size: 10px !important;
+        margin-top: 0px !important;
+      }
       button {
         // height: 20px;
         background-color: #ffffff;
         color: rgba(30, 176, 236, 1);
         margin-top: 0px !important;
         margin-right: 10px !important;
-
       }
       button:after {
         border-width: 2px;

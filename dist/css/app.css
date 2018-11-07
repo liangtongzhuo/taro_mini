@@ -54,6 +54,11 @@ button:hover {
   height: 2.13333rem;
 }
 
+.head .right span {
+  margin-top: 1.06667rem;
+  margin-right: 0.42667rem;
+}
+
 .head .right button {
   background-color: #ffffff;
   color: #1eb0ec;
@@ -72,6 +77,11 @@ button:hover {
     margin-top: 0.42667rem !important;
     width: 1.49333rem !important;
     height: 1.49333rem !important;
+  }
+
+  .head .right span {
+    font-size: 0.21333rem !important;
+    margin-top: 0 !important;
   }
 
   .head .right button {
