@@ -16,7 +16,17 @@ button:hover {
   .taro_page {
     position: inherit !important;
   }
-  .at-toast .toast-body {
-    font-size: 5px !important;
+  .at-toast {
+    .toast-body {
+      padding: 5px !important;
+      .toast-body-content {
+        .toast-body-content__info{
+          margin-top: -10px !important;
+        }
+      }
+    }
+    .taro-text {
+      font-size: 15px !important;
+    }
   }
 }

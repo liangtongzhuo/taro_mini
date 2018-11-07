@@ -57,7 +57,7 @@ export default class Register extends Component {
     setTimeout(() => {
       this.setState({ isOpened: false });
       console.log(11);
-    }, 5000);
+    }, 3000);
   }
 
   componentWillMount() {}
