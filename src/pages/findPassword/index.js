@@ -39,6 +39,7 @@ export default class FindPassword extends Component {
         await AV.User.requestPasswordResetBySmsCode(this.state.phone);
         this.setTiem();
       } catch (error) {
+        console.log(error);
         this.setState({ isOpened: true, text: "验证码发送失败" });
       }
     }
@@ -54,12 +55,12 @@ export default class FindPassword extends Component {
       this.setState({ isOpened: true, text: "请输入密码" });
     } else {
       try {
-        await AV.User.resetPasswordBySmsCode(this.state.code, this.pwd);
+        await AV.User.resetPasswordBySmsCode(this.state.code, this.state.pwd);
         Taro.navigateTo({
-          url: "/"
+          url: "/pages/login/index"
         });
       } catch (error) {
-        this.setState({ isOpened: true, text: "验证码过期了" });
+        this.setState({ isOpened: true, text: "验证码不正确" });
       }
     }
 

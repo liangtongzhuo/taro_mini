@@ -19,20 +19,11 @@ export default class Classroom extends Component {
       course: null,
       courseId: this.$router.params.id,
       subVideos: [],
-      index: 0,
-      isOpened: false
+      index: 0, //默认第几节课
+      isOpened: false,
+      text: "",
+      messages: []
     };
-    console.log(this.$router.params);
-  }
-  handleClick(value) {
-    this.setState({
-      current: value
-    });
-  }
-  handleChange(event) {
-    this.setState({
-      value: event.target.value
-    });
   }
 
   componentWillMount() {}
@@ -47,14 +38,16 @@ export default class Classroom extends Component {
         const Sub_video = new AV.Query("Sub_video");
         Sub_video.equalTo("course_id", course);
         const sub_video = await Sub_video.find(this.state.courseId);
-        this.setState({ course, subVideos: sub_video });
+        await this.setState({ course, subVideos: sub_video });
       }
     } catch (error) {
-      this.setState({ isOpened: true });
+      this.setState({ isOpened: true, text: "网络错误" });
       setTimeout(() => {
         this.setState({ isOpened: false });
       }, 3000);
     }
+    // 获取留言信息
+    this.getMessages();
   }
 
   componentWillUnmount() {}
@@ -65,6 +58,12 @@ export default class Classroom extends Component {
   }
 
   componentDidHide() {}
+
+  handleClick(value) {
+    this.setState({
+      current: value
+    });
+  }
 
   onClick(index) {
     console.log(index);
@@ -88,7 +87,58 @@ export default class Classroom extends Component {
       return subVideo.get(name);
     }
   }
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    });
+  }
+  // 发送留言
+  async onSendMessage() {
+    if (this.state.value.length == 0) {
+      this.setState({ isOpened: true, text: "请输入留言" });
+    } else if (!AV.User.current()) {
+      this.setState({ isOpened: true, text: "请登录后留言" });
+    } else {
+      const subVideo = this.state.subVideos[this.state.index];
+      const Message = AV.Object.extend("Message");
+      const message = new Message();
+      message.set("content", this.state.value);
+      message.set("user", AV.User.current());
+      message.set("sub_video", subVideo);
+      try {
+        await message.save();
+        this.setState({
+          value: ""
+        });
+        // 获取最新留言
+        this.getMessages();
+      } catch (error) {
+        this.setState({ isOpened: true, text: "网络错误" });
+      }
+    }
+
+    setTimeout(() => {
+      this.setState({ isOpened: false });
+    }, 3000);
+  }
+  async getMessages() {
+    const subVideo = this.state.subVideos[this.state.index];
+    var query = new AV.Query("Message");
+    query.equalTo("sub_video", subVideo);
+    query.include("user");
+    query.descending("createdAt");
+    try {
+      const messages = await query.find();
+      this.setState({ messages });
+    } catch (error) {
+      this.setState({ isOpened: true, text: "网络错误" });
+    }
+    setTimeout(() => {
+      this.setState({ isOpened: false });
+    }, 3000);
+  }
   render() {
+    // 视频课程
     const subVideosDOM = this.state.subVideos.map((item, index) => (
       <Text
         key={item.id}
@@ -97,6 +147,24 @@ export default class Classroom extends Component {
       >
         {item.get("title")}
       </Text>
+    ));
+    // 留言
+    const messagesDOM = this.state.messages.map(message => (
+      <View key={message.id}>
+        <View className="message-left">
+          <AtAvatar
+            circle
+            image="http://lc-8emscetg.cn-n1.lcfile.com/2a5cb3bac7d2d578235a.png"
+          />
+        </View>
+        <View className="message-right">
+          <View className="message-name">
+            <Text>{message.get("user").get("name")}</Text>
+            <Text>{formatDate(message.createdAt)}</Text>
+          </View>
+          <Text className="message -content">{message.get("content")}</Text>
+        </View>
+      </View>
     ));
 
     const tabList = [
@@ -134,7 +202,7 @@ export default class Classroom extends Component {
                 {this.getCourse("people")}人
               </View>
               <View className="sub-title">
-                本节课标题：
+                本节课：
                 {this.getSubVideo("title")}
               </View>
               <Text className="sub-title content" id="people">
@@ -172,58 +240,53 @@ export default class Classroom extends Component {
                     maxlength="100"
                     placeholder="说说你的看法..."
                   />
-                  <Button size="mini">发送</Button>
+                  <Button size="mini" onClick={this.onSendMessage.bind(this)}>
+                    发送
+                  </Button>
 
                   <View className="message-list">
-                    <View className="message-item">
-                      <View>
-                        <View className="message-left">
-                          <AtAvatar
-                            circle
-                            image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
-                          />
-                        </View>
-                        <View className="message-right">
-                          <View className="message-name">
-                            <Text>梁晓明</Text>
-                            <Text>2018/9/30 20:8</Text>
-                          </View>
-                          <Text className="message -content">
-                            哇塞真的学到了很多啊
-                          </Text>
-                        </View>
-                      </View>
-
-                      <View>
-                        <View className="message-left">
-                          <AtAvatar
-                            circle
-                            image="http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
-                          />
-                        </View>
-                        <View className="message-right">
-                          <View className="message-name">
-                            <Text>梁晓明</Text>
-                            <Text>2018/9/30 20:8</Text>
-                          </View>
-                          <Text className="message -content">
-                            哇塞真的学到了很多啊
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
+                    <View className="message-item">{messagesDOM}</View>
                   </View>
                 </View>
               </AtTabsPane>
             </AtTabs>
           </View>
         </View>
-        <AtToast
-          isOpened={this.state.isOpened}
-          text="网络错误"
-        />
+        <AtToast isOpened={this.state.isOpened} text={this.state.text} />
         <Fool />
       </View>
     );
   }
+}
+
+function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
+  }
+  let o = {
+    "M+": date.getMonth() + 1,
+    "d+": date.getDate(),
+    "h+": date.getHours(),
+    "m+": date.getMinutes(),
+    "s+": date.getSeconds()
+  };
+
+  // 遍历这个对象
+  for (let k in o) {
+    if (new RegExp(`(${k})`).test(fmt)) {
+      let str = o[k] + "";
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? str : padLeftZero(str)
+      );
+    }
+  }
+  return fmt;
+}
+
+function padLeftZero(str) {
+  return ("00" + str).substr(str.length);
 }
