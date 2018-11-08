@@ -192,15 +192,19 @@ export default class Classroom extends Component {
               muted={false}
             />
             <View className="right">
-              <Text className="title">{this.getCourse("title")}</Text>
+              <View className="title">
+                <Text>{this.getCourse("title")}</Text>
+                <Button id="btn" size="mini" type="primary">
+                  购买课程
+                </Button>
+              </View>
+
               <View className="sub-title">
                 价格：
-                <Text className="price">{this.getCourse("price")} ¥</Text>
+                <Text className="price">{this.getCourse("price")} ¥，</Text>
+                <Text>{`已经加入 ${this.getCourse("people")} 人`}</Text>
               </View>
-              <View className="sub-title" id="people">
-                已经加入
-                {this.getCourse("people")}人
-              </View>
+              {/* <View className="sub-title" id="people" /> */}
               <View className="sub-title">
                 本节课：
                 {this.getSubVideo("title")}

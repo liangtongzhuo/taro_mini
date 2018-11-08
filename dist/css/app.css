@@ -332,6 +332,27 @@ button:hover {
 .classroom .content .card .title {
   font-size: 1.4rem;
   color: #333;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.classroom .content .card .title span {
+  margin-top: 0.14933rem;
+}
+
+.classroom .content .card .title button {
+  margin-left: 0.64rem;
+  color: #ffffff;
+  background-color: #1eb0ec;
+}
+
+.classroom .content .card .title button:after {
+  border-color: #1eb0ec;
+}
+
+.classroom .content .card .title .price {
+  margin-left: 0.85333rem;
+  color: #1eb0ec;
 }
 
 .classroom .content .card .sub-title {
@@ -339,10 +360,6 @@ button:hover {
   font-size: 1rem;
   color: #999;
   margin-top: 0.42667rem;
-}
-
-.classroom .content .card .sub-title .price {
-  color: #1eb0ec;
 }
 
 .classroom .content .at-tabs__item {
@@ -436,6 +453,10 @@ button:hover {
     line-height: 0.21333rem !important;
   }
 
+  .classroom .content .card .right .title button:after {
+    border-width: 0.04267rem;
+  }
+
   .classroom .content .card .right .sub-title {
     font-size: 0.256rem !important;
     margin-top: 0.85333rem !important;
@@ -445,11 +466,8 @@ button:hover {
     font-size: 0.256rem !important;
   }
 
-  .classroom .content .card .right #people {
-    margin-top: 0.576rem !important;
-  }
-
   .classroom .content .card .right .content {
+    margin-top: 0.576rem !important;
     line-height: 0.27733rem !important;
     padding: 0.21333rem !important;
   }
