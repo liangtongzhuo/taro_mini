@@ -7,6 +7,27 @@ import "./index.scss";
 import Fool from "../../components/Fool";
 import Head from "../../components/Head";
 
+
+/**
+import axios from 'axios' 
+axios.post('claim-code', reqData)
+          .then(res => {
+            let resData = res.data
+            if (resData.success) {
+              this.$router.push('/share')
+              Loading.hide()
+            } else {
+              toast({html: '收藏失败！'})
+              Loading.hide()
+            }
+          })
+          .catch(err => {
+            Loading.hide()
+            console.log(err)
+          })
+ */
+
+
 export default class Classroom extends Component {
   config = {
     navigationBarTitleText: "课程详情列表"
@@ -137,6 +158,10 @@ export default class Classroom extends Component {
       this.setState({ isOpened: false });
     }, 3000);
   }
+  /**
+   * 购买课程
+   */
+  onPay() {}
   render() {
     // 视频课程
     const subVideosDOM = this.state.subVideos.map((item, index) => (
@@ -194,7 +219,11 @@ export default class Classroom extends Component {
             <View className="right">
               <View className="title">
                 <Text>{this.getCourse("title")}</Text>
-                <Button id="btn" size="mini" type="primary">
+                <Button
+                  onClick={this.onPay.bind(this)}
+                  size="mini"
+                  type="primary"
+                >
                   购买课程
                 </Button>
               </View>
@@ -261,6 +290,36 @@ export default class Classroom extends Component {
       </View>
     );
   }
+}
+
+function onBridgeReady() {
+  WeixinJSBridge.invoke(
+    "getBrandWCPayRequest",
+    {
+      appId: "wx2421b1c4370ec43b", //公众号名称，由商户传入
+      timeStamp: "1395712654", //时间戳，自1970年以来的秒数
+      nonceStr: "e61463f8efa94090b1f366cccfbbb444", //随机串
+      package: "prepay_id=u802345jgfjsdfgsdg888",
+      signType: "MD5", //微信签名方式：
+      paySign: "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
+    },
+    function(res) {
+      if (res.err_msg == "get_brand_wcpay_request:ok") {
+        // 使用以上方式判断前端返回,微信团队郑重提示：
+        //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+      }
+    }
+  );
+}
+if (typeof WeixinJSBridge == "undefined") {
+  if (document.addEventListener) {
+    document.addEventListener("WeixinJSBridgeReady", onBridgeReady, false);
+  } else if (document.attachEvent) {
+    document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+    document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+  }
+} else {
+  onBridgeReady();
 }
 
 function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
