@@ -1,4 +1,5 @@
 import AV from "leancloud-storage";
+import axios from "axios";
 import Taro, { Component } from "@tarojs/taro";
 import "@tarojs/async-await";
 import { View, Text, Image, Video, RichText, Button } from "@tarojs/components";
@@ -6,25 +7,6 @@ import { AtTabs, AtTabsPane, AtTextarea, AtAvatar, AtToast } from "taro-ui";
 import "./index.scss";
 import Fool from "../../components/Fool";
 import Head from "../../components/Head";
-
-/**
-import axios from 'axios' 
-axios.post('claim-code', reqData)
-          .then(res => {
-            let resData = res.data
-            if (resData.success) {
-              this.$router.push('/share')
-              Loading.hide()
-            } else {
-              toast({html: '收藏失败！'})
-              Loading.hide()
-            }
-          })
-          .catch(err => {
-            Loading.hide()
-            console.log(err)
-          })
- */
 
 export default class Classroom extends Component {
   config = {
@@ -42,7 +24,8 @@ export default class Classroom extends Component {
       isOpened: false,
       text: "",
       messages: [],
-      pay: 0
+      pay: 0,
+      isDisplay: false //是否弹窗
     };
   }
 
@@ -53,9 +36,13 @@ export default class Classroom extends Component {
       if (this.state.courseId) {
         const Courses = new AV.Query("Courses");
         const course = await Courses.get(this.state.courseId);
+        try {
+          course.increment("views", 1);
+          course.fetchWhenSave(true);
+          course.save();
+        } catch (error) {}
 
         // 查询是否已经购买
-
         if (AV.User.current()) {
           const Orders = new AV.Query("Orders");
           Orders.equalTo("course", course);
@@ -178,12 +165,45 @@ export default class Classroom extends Component {
       this.setState({ isOpened: true, text: "请登录" });
     } else {
       try {
-        const Orders = AV.Object.extend("Orders");
-        const order = new Orders();
-        order.set("pay", 0);
-        order.set("user", AV.User.current());
-        order.set("course", this.state.course);
-        await order.save();
+        // 先查询，
+        let Orders = new AV.Query("Orders");
+        Orders.equalTo("course", this.state.course);
+        Orders.equalTo("user", AV.User.current());
+        Orders.equalTo("pay", 0);
+        let order = await Orders.find();
+        order = order[0];
+        if (!order) {
+          try {
+            // 购买人数+1
+            const course = AV.Object.createWithoutData(
+              "Courses",
+              this.state.course.id
+            );
+            course.increment("people", 1);
+            course.save();
+          } catch (error) {
+            console.log(error);
+          }
+
+          Orders = AV.Object.extend("Orders");
+          order = new Orders();
+          order.set("title", this.state.course.get("title"));
+          order.set("price", this.state.course.get("price"));
+          order.set("course", this.state.course);
+          order.set("user", AV.User.current());
+          order.set("pay", 0);
+          order = await order.save();
+        }
+
+        console.log("需要向后台发送", order.id);
+        const isPc = true;
+        if (isPc) {
+          // await axios.post('claim-code', {})
+          // 展示二维码
+          this.setState({ codeStr, isDisplay: true });
+        } else {
+          // await axios.post('claim-code', {})
+        }
       } catch (error) {
         this.setState({ isOpened: true, text: "网络错误" });
       }
@@ -204,6 +224,10 @@ export default class Classroom extends Component {
     }
 
     return false;
+  }
+  // scan
+  onScanCode() {
+    window.location.reload();
   }
 
   render() {
@@ -263,13 +287,17 @@ export default class Classroom extends Component {
             <View className="right">
               <View className="title">
                 <Text>{this.getCourse("title")}</Text>
-                <Button
-                  onClick={this.onPay.bind(this)}
-                  size="mini"
-                  type="primary"
-                >
-                  购买课程
-                </Button>
+                {this.state.pay == 0 ? (
+                  <Button
+                    onClick={this.onPay.bind(this)}
+                    size="mini"
+                    type="primary"
+                  >
+                    购买课程
+                  </Button>
+                ) : (
+                  <Text> 「已购买」</Text>
+                )}
               </View>
 
               <View className="sub-title">
@@ -330,6 +358,24 @@ export default class Classroom extends Component {
           </View>
         </View>
         <AtToast isOpened={this.state.isOpened} text={this.state.text} />
+        <View id="modal">
+          <View
+            className="show"
+            style={{ display: this.state.isDisplay ? "" : "none" }}
+          >
+            请用微信扫码二维码，完成支付
+            <Image
+              className="img"
+              src={"data:image/jpg;base64," + this.state.codeStr}
+            />
+            <Button size="mini" onClick={this.onScanCode.bind(this)}>
+              关闭支付
+            </Button>
+            <Button size="mini" onClick={this.onScanCode.bind(this)}>
+              完成支付
+            </Button>
+          </View>
+        </View>
         <Fool />
       </View>
     );
@@ -397,3 +443,41 @@ function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
 function padLeftZero(str) {
   return ("00" + str).substr(str.length);
 }
+
+const codeStr = `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
+q6gFDwAAAABJRU5ErkJggg==`;
