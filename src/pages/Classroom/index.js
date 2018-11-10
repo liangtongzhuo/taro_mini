@@ -7,7 +7,6 @@ import "./index.scss";
 import Fool from "../../components/Fool";
 import Head from "../../components/Head";
 
-
 /**
 import axios from 'axios' 
 axios.post('claim-code', reqData)
@@ -27,7 +26,6 @@ axios.post('claim-code', reqData)
           })
  */
 
-
 export default class Classroom extends Component {
   config = {
     navigationBarTitleText: "课程详情列表"
@@ -43,7 +41,8 @@ export default class Classroom extends Component {
       index: 0, //默认第几节课
       isOpened: false,
       text: "",
-      messages: []
+      messages: [],
+      pay: 0
     };
   }
 
@@ -54,6 +53,19 @@ export default class Classroom extends Component {
       if (this.state.courseId) {
         const Courses = new AV.Query("Courses");
         const course = await Courses.get(this.state.courseId);
+
+        // 查询是否已经购买
+
+        if (AV.User.current()) {
+          const Orders = new AV.Query("Orders");
+          Orders.equalTo("course", course);
+          Orders.equalTo("user", AV.User.current());
+          Orders.equalTo("pay", 1);
+          const order = await Orders.find();
+          if (order.length != 0) {
+            this.setState({ pay: 1 });
+          }
+        }
 
         // 查询课程下面的视频
         const Sub_video = new AV.Query("Sub_video");
@@ -159,9 +171,41 @@ export default class Classroom extends Component {
     }, 3000);
   }
   /**
-   * 购买课程
+   * 生成订单
    */
-  onPay() {}
+  async onPay() {
+    if (!AV.User.current()) {
+      this.setState({ isOpened: true, text: "请登录" });
+    } else {
+      try {
+        const Orders = AV.Object.extend("Orders");
+        const order = new Orders();
+        order.set("pay", 0);
+        order.set("user", AV.User.current());
+        order.set("course", this.state.course);
+        await order.save();
+      } catch (error) {
+        this.setState({ isOpened: true, text: "网络错误" });
+      }
+    }
+
+    setTimeout(() => {
+      this.setState({ isOpened: false });
+    }, 3000);
+  }
+  // 用于判断是否可以播放
+  isPlay() {
+    if (this.state.subVideos.length == 0) return;
+    const subVideo = this.state.subVideos[this.state.index];
+    if (subVideo.get("pay") == 1) {
+      return subVideo.get("video").url();
+    } else if (this.state.pay === 1) {
+      return subVideo.get("video").url();
+    }
+
+    return false;
+  }
+
   render() {
     // 视频课程
     const subVideosDOM = this.state.subVideos.map((item, index) => (
@@ -207,7 +251,7 @@ export default class Classroom extends Component {
         <View className="content">
           <View className="card">
             <Video
-              src={this.getSubVideo("video")}
+              src={this.isPlay()}
               autoplay={false}
               poster={this.getCourse("cover")}
               controlsList="nodownload"
