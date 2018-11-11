@@ -196,13 +196,18 @@ export default class Classroom extends Component {
         }
 
         console.log("需要向后台发送", order.id);
-        const isPc = true;
-        if (isPc) {
+        const isWx = this.isWeixn();
+        if (isWx) {
           // await axios.post('claim-code', {})
+          // 1.请求
+          // 2.拉起
+          // 3.成功后刷新页面
+        } else {
+          const codeStr = await axios.post("/wechat/qrcodepay/getqrcode", {
+            orderId: order.id
+          });
           // 展示二维码
           this.setState({ codeStr, isDisplay: true });
-        } else {
-          // await axios.post('claim-code', {})
         }
       } catch (error) {
         this.setState({ isOpened: true, text: "网络错误" });
@@ -229,7 +234,16 @@ export default class Classroom extends Component {
   onScanCode() {
     window.location.reload();
   }
-
+  // 判断微信浏览器
+  isWeixn() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf("micromessenger") != -1;
+    if (isWeixin) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   render() {
     // 视频课程
     const subVideosDOM = this.state.subVideos.map((item, index) => (

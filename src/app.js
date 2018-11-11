@@ -4,7 +4,7 @@ import Taro, { Component } from "@tarojs/taro";
 import Index from "./pages/index";
 import "./app.scss";
 
-axios.defaults.baseURL = 'http://baf2faf3.ngrok.io/';
+axios.defaults.baseURL = 'http://www.pengxiangmed.com/';
 const appId = "8emScetGhjUYBVhVr5Px2WPq-gzGzoHsz";
 const appKey = "9FPFgVk7a18hC9FnYxQxfqs8";
 AV.init({ appId, appKey });

@@ -51,7 +51,7 @@ export default class Login extends Component {
         } else {
           this.setState({
             isOpened: true,
-            text: "登录失败次数超过限制，请稍候再试，或者通过忘记密码重设密码"
+            text: "登录失败次数超过限制"
           });
         }
         console.log(error.code);
