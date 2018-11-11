@@ -34,7 +34,7 @@ export default class Fool extends Component {
         />
 
         <View className="tail">
-          <Text className="tail-title">上海鹏翔医学科技有限公司</Text>
+          <Text className="tail-title">上海鹏祥医学科技有限公司</Text>
           <Text className="tail-title">©2019 | 京XX备XXXXX号</Text>
         </View>
       </View>

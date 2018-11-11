@@ -41,24 +41,14 @@ export default class Classroom extends Component {
           course.fetchWhenSave(true);
           course.save();
         } catch (error) {}
-
-        // 查询是否已经购买
-        if (AV.User.current()) {
-          const Orders = new AV.Query("Orders");
-          Orders.equalTo("course", course);
-          Orders.equalTo("user", AV.User.current());
-          Orders.equalTo("pay", 1);
-          const order = await Orders.find();
-          if (order.length != 0) {
-            this.setState({ pay: 1 });
-          }
-        }
-
+        
         // 查询课程下面的视频
         const Sub_video = new AV.Query("Sub_video");
         Sub_video.equalTo("course_id", course);
         const sub_video = await Sub_video.find(this.state.courseId);
         await this.setState({ course, subVideos: sub_video });
+        // 查询是否支付
+        await this.queryIsPay();
       }
     } catch (error) {
       this.setState({ isOpened: true, text: "网络错误" });
@@ -68,6 +58,20 @@ export default class Classroom extends Component {
     }
     // 获取留言信息
     this.getMessages();
+  }
+  // 查询是否支付了
+  async queryIsPay() {
+    // 查询是否已经购买
+    if (AV.User.current()) {
+      const Orders = new AV.Query("Orders");
+      Orders.equalTo("course",  this.state.course);
+      Orders.equalTo("user", AV.User.current());
+      Orders.equalTo("pay", 1);
+      const order = await Orders.find();
+      if (order.length != 0) {
+        this.setState({ pay: 1 });
+      }
+    }
   }
 
   componentWillUnmount() {}
@@ -165,35 +169,26 @@ export default class Classroom extends Component {
       this.setState({ isOpened: true, text: "请登录" });
     } else {
       try {
-        // 先查询，
-        let Orders = new AV.Query("Orders");
-        Orders.equalTo("course", this.state.course);
-        Orders.equalTo("user", AV.User.current());
-        Orders.equalTo("pay", 0);
-        let order = await Orders.find();
-        order = order[0];
-        if (!order) {
-          try {
-            // 购买人数+1
-            const course = AV.Object.createWithoutData(
-              "Courses",
-              this.state.course.id
-            );
-            course.increment("people", 1);
-            course.save();
-          } catch (error) {
-            console.log(error);
-          }
-
-          Orders = AV.Object.extend("Orders");
-          order = new Orders();
-          order.set("title", this.state.course.get("title"));
-          order.set("price", this.state.course.get("price"));
-          order.set("course", this.state.course);
-          order.set("user", AV.User.current());
-          order.set("pay", 0);
-          order = await order.save();
+        try {
+          // 购买人数+1
+          const course = AV.Object.createWithoutData(
+            "Courses",
+            this.state.course.id
+          );
+          course.increment("people", 1);
+          course.save();
+        } catch (error) {
+          console.log(error);
         }
+
+        const Orders = AV.Object.extend("Orders");
+        let order = new Orders();
+        order.set("title", this.state.course.get("title"));
+        order.set("price", this.state.course.get("price"));
+        order.set("course", this.state.course);
+        order.set("user", AV.User.current());
+        order.set("pay", 0);
+        order = await order.save();
 
         console.log("需要向后台发送", order.id);
         const isWx = this.isWeixn();

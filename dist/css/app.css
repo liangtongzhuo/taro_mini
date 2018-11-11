@@ -38,8 +38,8 @@ button:hover {
 
 .head .left .logo {
   margin-left: 0.85333rem;
-  margin-top: 0.85333rem;
-  width: 3.2rem;
+  margin-top: 0.21333rem;
+  width: 11.73333rem;
   height: 3.2rem;
 }
 
@@ -75,7 +75,7 @@ button:hover {
   .head .logo {
     margin-left: 0 !important;
     margin-top: 0.42667rem !important;
-    width: 1.49333rem !important;
+    width: 5.33333rem !important;
     height: 1.49333rem !important;
   }
 

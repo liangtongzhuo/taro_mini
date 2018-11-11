@@ -12,9 +12,6 @@ import {
 import Head from "../../components/Head";
 import VideoItem from "../../components/VideoItem";
 import Fool from "../../components/Fool";
-
-import banner1 from "../../images/banner1.jpg";
-import banner2 from "../../images/banner2.jpg";
 import "./index.scss";
 
 export default class Index extends Component {
@@ -73,17 +70,14 @@ export default class Index extends Component {
           autoplay
         >
           <SwiperItem style=" height:200px">
-            <Image className="banner" src={banner1} />
+            <Image className="banner" src='http://lc-8emscetg.cn-n1.lcfile.com/22a2cde252fb80227124.jpeg' />
           </SwiperItem>
           <SwiperItem>
-            <Image className="banner" src={banner2} />
-          </SwiperItem>
-          <SwiperItem>
-            <Image className="banner" src={banner1} />
+            <Image className="banner" src="http://lc-8emscetg.cn-n1.lcfile.com/22a2cde252fb80227124.jpeg" />
           </SwiperItem>
         </Swiper>
 
-        <Text className="title">鹏翔医学服务平台</Text>
+        <Text className="title">鹏祥医学服务平台</Text>
         <Text className="sub-title">在线学习</Text>
 
         <View className="button-list">

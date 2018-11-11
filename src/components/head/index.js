@@ -1,7 +1,6 @@
 import AV from "leancloud-storage";
 import Taro, { Component } from "@tarojs/taro";
 import { View, Button, Image, Text } from "@tarojs/components";
-import logo from "../../images/logo.png";
 import "./index.scss";
 
 export default class Head extends Component {
@@ -52,7 +51,7 @@ export default class Head extends Component {
     return (
       <View className="head">
         <View className="left" onClick={this.onHome.bind(this)}>
-          <Image className="logo" src={logo} />
+          <Image className="logo" src="http://lc-8emscetg.cn-n1.lcfile.com/aaca1b144fd17a5e70f6.png" />
         </View>
         <View className="right">{showRight}</View>
       </View>

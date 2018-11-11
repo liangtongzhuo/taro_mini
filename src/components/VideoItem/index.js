@@ -24,7 +24,11 @@ export default class VideoItem extends Component {
               <AtIcon value="eye" className="eyeIcon" />
               {this.props.course.get("views")}
             </Text>
-            <Text className="price">{this.props.course.get("price")} ¥</Text>
+            <Text className="price">
+              {this.props.course.get("price") === 0
+                ? "免费"
+                : this.props.course.get("price") + "¥"}
+            </Text>
           </View>
         </View>
       </View>
