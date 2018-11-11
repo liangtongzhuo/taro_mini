@@ -162,7 +162,7 @@ export default class Register extends Component {
               name="pwd"
               title="密码"
               type="password"
-              placeholder="密码不少于10位数"
+              placeholder="建议密码不少于6位数"
               maxlength="20"
               value={this.state.pwd}
               onChange={this.handleChange.bind(this, "pwd")}
@@ -176,3 +176,6 @@ export default class Register extends Component {
     );
   }
 }
+
+const redirect_uri = encodeURIComponent("");
+const ret = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`;
