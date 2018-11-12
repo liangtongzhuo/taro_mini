@@ -41,7 +41,7 @@ export default class Classroom extends Component {
           course.fetchWhenSave(true);
           course.save();
         } catch (error) {}
-        
+
         // 查询课程下面的视频
         const Sub_video = new AV.Query("Sub_video");
         Sub_video.equalTo("course_id", course);
@@ -64,7 +64,7 @@ export default class Classroom extends Component {
     // 查询是否已经购买
     if (AV.User.current()) {
       const Orders = new AV.Query("Orders");
-      Orders.equalTo("course",  this.state.course);
+      Orders.equalTo("course", this.state.course);
       Orders.equalTo("user", AV.User.current());
       Orders.equalTo("pay", 1);
       const order = await Orders.find();
@@ -347,7 +347,12 @@ export default class Classroom extends Component {
 
               <View className="sub-title">
                 价格：
-                <Text className="price">{this.getCourse("price")} ¥，</Text>
+                <Text className="price">
+                  {this.props.course.get("price") === 0
+                    ? "免费"
+                    : this.props.course.get("price") / 100 + "¥"}
+                  ，
+                </Text>
                 <Text>{`已经加入 ${this.getCourse("people")} 人`}</Text>
               </View>
               {/* <View className="sub-title" id="people" /> */}

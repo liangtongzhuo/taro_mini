@@ -27,7 +27,7 @@ export default class VideoItem extends Component {
             <Text className="price">
               {this.props.course.get("price") === 0
                 ? "免费"
-                : this.props.course.get("price") + "¥"}
+                : this.props.course.get("price")/100 + "¥"}
             </Text>
           </View>
         </View>
