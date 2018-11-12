@@ -1,4 +1,3 @@
-
 import AV from "leancloud-storage";
 import axios from "axios";
 import Taro, { Component } from "@tarojs/taro";
@@ -103,9 +102,6 @@ export default class Classroom extends Component {
   getSubVideo(name) {
     const subVideo = this.state.subVideos[this.state.index];
     if (this.state.index != -1 && subVideo) {
-      if (name == "video") {
-        return subVideo.get(name).url();
-      }
       return subVideo.get(name);
     }
   }
@@ -220,9 +216,9 @@ export default class Classroom extends Component {
     if (this.state.subVideos.length == 0) return;
     const subVideo = this.state.subVideos[this.state.index];
     if (subVideo.get("pay") == 1) {
-      return subVideo.get("video").url();
+      return subVideo.get("video");
     } else if (this.state.pay === 1) {
-      return subVideo.get("video").url();
+      return subVideo.get("video");
     }
 
     return false;
@@ -313,6 +309,16 @@ export default class Classroom extends Component {
       { title: "课程目录" },
       { title: "全部评论" }
     ];
+    const btn =
+      this.getCourse("price") != 0 &&
+      (this.state.pay == 0 ? (
+        <Button onClick={this.onPay.bind(this)} size="mini" type="primary">
+          购买课程
+        </Button>
+      ) : (
+        <Text> 「已购买」</Text>
+      ));
+
     return (
       <View className="classroom">
         <Head />
@@ -335,17 +341,7 @@ export default class Classroom extends Component {
             <View className="right">
               <View className="title">
                 <Text>{this.getCourse("title")}</Text>
-                {this.state.pay == 0 ? (
-                  <Button
-                    onClick={this.onPay.bind(this)}
-                    size="mini"
-                    type="primary"
-                  >
-                    购买课程
-                  </Button>
-                ) : (
-                  <Text> 「已购买」</Text>
-                )}
+                {btn}
               </View>
 
               <View className="sub-title">
