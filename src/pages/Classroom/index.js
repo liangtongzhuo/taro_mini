@@ -1,3 +1,4 @@
+
 import AV from "leancloud-storage";
 import axios from "axios";
 import Taro, { Component } from "@tarojs/taro";
@@ -96,9 +97,6 @@ export default class Classroom extends Component {
 
   getCourse(name) {
     if (this.state.course) {
-      if (name == "cover") {
-        return this.state.course.get(name).url();
-      }
       return this.state.course.get(name);
     }
   }
@@ -275,6 +273,11 @@ export default class Classroom extends Component {
       onBridgeReady();
     }
   }
+  onPrice() {
+    return this.getCourse("price") === 0
+      ? "免费"
+      : this.getCourse("price") / 100 + "¥";
+  }
   render() {
     // 视频课程
     const subVideosDOM = this.state.subVideos.map((item, index) => (
@@ -347,12 +350,7 @@ export default class Classroom extends Component {
 
               <View className="sub-title">
                 价格：
-                <Text className="price">
-                  {this.getCourse("price") === 0
-                    ? "免费"
-                    : this.getCourse("price") / 100 + "¥"}
-                  ，
-                </Text>
+                <Text className="price">{this.onPrice()}，</Text>
                 <Text>{`已经加入 ${this.getCourse("people")} 人`}</Text>
               </View>
               {/* <View className="sub-title" id="people" /> */}
