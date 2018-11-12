@@ -42,7 +42,5 @@ class App extends Component {
 
 Taro.render(<App />, document.getElementById("app"));
 
-import queryString from "query-string";
-
-const xxx = "http://user:pass@host.com:8080/p/a/t/h?query=string#hash";
-console.log(queryString.parse(xxx));
+// import queryString from "query-string";
+// alert(queryString.parse(window.location.href));

@@ -24,6 +24,10 @@ export default class Register extends Component {
       time: 0,
       interval: null
     };
+
+    // const redirect_uri = encodeURIComponent("http://www.pengxiangmed.com");
+    // const href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
+    // window.location.href = href;
   }
   handleChange(name, value) {
     this.setState({
@@ -177,5 +181,6 @@ export default class Register extends Component {
   }
 }
 
-const redirect_uri = encodeURIComponent("");
-const ret = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`;
+// import queryString from "query-string";
+// const xxx = "http://user:pass@host.com:8080/p/a/t/h?query=string#hash";
+// console.log(queryString.parse(xxx));
