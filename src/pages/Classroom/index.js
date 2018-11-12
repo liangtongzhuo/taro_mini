@@ -215,7 +215,7 @@ export default class Classroom extends Component {
   isPlay() {
     if (this.state.subVideos.length == 0) return;
     const subVideo = this.state.subVideos[this.state.index];
-    if (subVideo.get("pay") == 1) {
+    if (subVideo.get("pay") == 0) {
       return subVideo.get("video");
     } else if (this.state.pay === 1) {
       return subVideo.get("video");
@@ -324,7 +324,7 @@ export default class Classroom extends Component {
         <Head />
         <Image
           className="img"
-          src="http://www.bestthinkers.cn/upload/201606/16/201606160933002627.jpg"
+          src="http://lc-8emscetg.cn-n1.lcfile.com/1d2b680e87c3c5338482.png"
         />
         <View className="content">
           <View className="card">

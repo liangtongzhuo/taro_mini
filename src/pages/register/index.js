@@ -24,10 +24,6 @@ export default class Register extends Component {
       time: 0,
       interval: null
     };
-
-    // const redirect_uri = encodeURIComponent("http://www.pengxiangmed.com");
-    // const href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
-    // window.location.href = href;
   }
   handleChange(name, value) {
     this.setState({

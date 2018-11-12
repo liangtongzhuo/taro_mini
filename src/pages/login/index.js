@@ -42,9 +42,13 @@ export default class Login extends Component {
     } else {
       try {
         await AV.User.logIn(this.state.phone, this.state.pwd);
-        Taro.navigateTo({
-          url: "/"
-        });
+        // Taro.navigateTo({
+          // url: "/"
+        // });
+        // 登录成功
+        const redirect_uri = encodeURIComponent("http://www.pengxiangmed.com");
+        const href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
+        window.location.href = href;
       } catch (error) {
         if (error.code === 219) {
           this.setState({ isOpened: true, text: "用户名和密码不匹配" });

@@ -1,5 +1,7 @@
 import AV from "leancloud-storage";
+import queryString from "query-string";
 import axios from "axios";
+import "@tarojs/async-await";
 import Taro, { Component } from "@tarojs/taro";
 import Index from "./pages/index";
 
@@ -29,7 +31,13 @@ class App extends Component {
 
   componentDidMount() {}
 
-  componentDidShow() {}
+  async componentDidShow() {
+    // const res = await axios.post("/wechat/jsapipay/authcenter", {
+    //   orderId: order.id
+    // });
+    console.log(queryString.parse(window.location.href))
+
+  }
 
   componentDidHide() {}
 
@@ -42,5 +50,9 @@ class App extends Component {
 
 Taro.render(<App />, document.getElementById("app"));
 
-// import queryString from "query-string";
-// alert(queryString.parse(window.location.href));
+
+
+
+
+
+

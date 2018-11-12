@@ -70,13 +70,12 @@ export default class Index extends Component {
           autoplay
         >
           <SwiperItem style=" height:200px">
-            <Image className="banner" src='http://lc-8emscetg.cn-n1.lcfile.com/22a2cde252fb80227124.jpeg' />
+            <Image className="banner" src='http://lc-8emscetg.cn-n1.lcfile.com/1d266fbc28a6bc28fca8.jpeg' />
           </SwiperItem>
           <SwiperItem>
-            <Image className="banner" src="http://lc-8emscetg.cn-n1.lcfile.com/22a2cde252fb80227124.jpeg" />
+            <Image className="banner" src="http://lc-8emscetg.cn-n1.lcfile.com/1d2b680e87c3c5338482.png" />
           </SwiperItem>
         </Swiper>
-
         <Text className="title">鹏祥医学服务平台</Text>
         <Text className="sub-title">在线学习</Text>
 
