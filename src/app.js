@@ -32,13 +32,28 @@ class App extends Component {
   componentDidMount() {}
 
   async componentDidShow() {
-    // const res = await axios.post("/wechat/jsapipay/authcenter", {
-    //   orderId: order.id
-    // });
-    console.log(queryString.parse(window.location.href))
-
+    const code = queryString.parseUrl(window.location.href).code;
+    alert("code:" + code);
+    alert(window.location.href);
+    if (this.isWeixn && AV.User.current() && code) {
+      try {
+        const res = await axios.post("/wechat/jsapipay/authcenter", {
+          code: code,
+          userId: AV.User.current().id
+        });
+      } catch (error) {}
+    }
   }
-
+  // 判断微信浏览器
+  isWeixn() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf("micromessenger") != -1;
+    if (isWeixin) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   componentDidHide() {}
 
   componentCatchError() {}
@@ -50,9 +65,8 @@ class App extends Component {
 
 Taro.render(<App />, document.getElementById("app"));
 
+// alert(queryString.parse(window.location.href).toJSONString())
 
+// console.log();
 
-
-
-
-
+// alert(window.location.href)

@@ -42,13 +42,18 @@ export default class Login extends Component {
     } else {
       try {
         await AV.User.logIn(this.state.phone, this.state.pwd);
-        // Taro.navigateTo({
-          // url: "/"
-        // });
         // 登录成功
-        const redirect_uri = encodeURIComponent("http://www.pengxiangmed.com");
-        const href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
-        window.location.href = href;
+        if (this.isWeixn()) {
+          const redirect_uri = encodeURIComponent(
+            "http://www.pengxiangmed.com"
+          );
+          const href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb1fa87f88638af92&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`;
+          window.location.href = href;
+        } else {
+          Taro.navigateTo({
+            url: "/"
+          });
+        }
       } catch (error) {
         if (error.code === 219) {
           this.setState({ isOpened: true, text: "用户名和密码不匹配" });
@@ -66,7 +71,16 @@ export default class Login extends Component {
       this.setState({ isOpened: false });
     }, 3000);
   }
-
+  // 判断微信浏览器
+  isWeixn() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf("micromessenger") != -1;
+    if (isWeixin) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   componentWillMount() {}
 
   componentDidMount() {}
