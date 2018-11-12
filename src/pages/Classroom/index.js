@@ -348,9 +348,9 @@ export default class Classroom extends Component {
               <View className="sub-title">
                 价格：
                 <Text className="price">
-                  {this.props.course.get("price") === 0
+                  {this.getCourse("price") === 0
                     ? "免费"
-                    : this.props.course.get("price") / 100 + "¥"}
+                    : this.getCourse("price") / 100 + "¥"}
                   ，
                 </Text>
                 <Text>{`已经加入 ${this.getCourse("people")} 人`}</Text>
