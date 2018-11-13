@@ -354,10 +354,10 @@ export default class Classroom extends Component {
                 本节课：
                 {this.getSubVideo("title")}
               </View>
-              <Text className="sub-title content" id="people">
+              {/* <Text className="sub-title content" id="people">
                 本节课主要内容：
                 {this.getSubVideo("content")}
-              </Text>
+              </Text> */}
             </View>
           </View>
         </View>

@@ -32,7 +32,7 @@ class App extends Component {
   componentDidMount() {}
 
   async componentDidShow() {
-    const code = queryString.parseUrl(window.location.href).code;
+    const code = queryString.parseUrl(window.location.href).query.code;
     alert("code:" + code);
     alert(window.location.href);
     if (this.isWeixn && AV.User.current() && code) {
@@ -67,6 +67,3 @@ Taro.render(<App />, document.getElementById("app"));
 
 // alert(queryString.parse(window.location.href).toJSONString())
 
-// console.log();
-
-// alert(window.location.href)
