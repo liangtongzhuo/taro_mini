@@ -65,5 +65,4 @@ class App extends Component {
 
 Taro.render(<App />, document.getElementById("app"));
 
-// alert(queryString.parse(window.location.href).toJSONString())
 
