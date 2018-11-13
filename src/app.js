@@ -29,7 +29,18 @@ class App extends Component {
     }
   };
 
-  componentDidMount() {}
+  async componentDidMount() {
+    const time = window.localStorage.getItem("time");
+    const currentUser = AV.User.current();
+    if (currentUser && time) {
+      await currentUser.fetch();
+      if (time != currentUser.get("time")) {
+        AV.User.logOut();
+        window.location.href = "/";
+      }
+    }
+
+  }
 
   async componentDidShow() {
     const code = queryString.parseUrl(window.location.href).query.code;

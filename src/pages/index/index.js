@@ -70,7 +70,10 @@ export default class Index extends Component {
           // autoplay
         >
           <SwiperItem style=" height:200px">
-            <Image className="banner" src='http://lc-8emscetg.cn-n1.lcfile.com/1d266fbc28a6bc28fca8.jpeg' />
+            <Image
+              className="banner"
+              src="http://lc-8emscetg.cn-n1.lcfile.com/1d2b680e87c3c5338482.png"
+            />
           </SwiperItem>
           {/* <SwiperItem>
             <Image className="banner" src="http://lc-8emscetg.cn-n1.lcfile.com/d1b87d201de1c1088a52.png" />

@@ -93,6 +93,9 @@ export default class Register extends Component {
         currentUser.setUsername(this.state.phone);
         currentUser.setPassword(this.state.pwd);
         currentUser.set("name", this.state.name);
+        const time = Date.now() + '';
+        window.localStorage.setItem("time", time);
+        currentUser.set('time',time);
         await currentUser.save();
 
         Taro.navigateTo({

@@ -189,21 +189,22 @@ export default class Classroom extends Component {
         const isWx = this.isWeixn();
         if (isWx) {
           // 1.请求
-          const res = await axios.post("jsapipay/unifiedpay", {
+          const res = await axios.post("/wechat/jsapipay/unifiedpay", {
             orderId: order.id
           });
           // 2.拉起
-
+          this.weixinPlay(res.data);
           // 3.成功后刷新页面
         } else {
           const codeStr = await axios.post("/wechat/qrcodepay/getqrcode", {
             orderId: order.id
           });
-          console.log(1111, codeStr);
           // 展示二维码
           this.setState({ codeStr: codeStr.data, isDisplay: true });
         }
       } catch (error) {
+        var str = JSON.stringify(error);
+        alert("error:" + str);
         this.setState({ isOpened: true, text: "网络错误" });
       }
     }
@@ -239,22 +240,31 @@ export default class Classroom extends Component {
     }
   }
   // 拉取微信支付
-  weixinPlay() {
+  weixinPlay(data) {
+    // alert(data);
+    // const data1 = JSON.parse(data);
+    var str = JSON.stringify(data);
+    alert("data:" + str);
+    const self = this;
     function onBridgeReady() {
       WeixinJSBridge.invoke(
         "getBrandWCPayRequest",
         {
-          appId: "wx2421b1c4370ec43b", //公众号名称，由商户传入
-          timeStamp: "1395712654", //时间戳，自1970年以来的秒数
-          nonceStr: "e61463f8efa94090b1f366cccfbbb444", //随机串
-          package: "prepay_id=u802345jgfjsdfgsdg888",
-          signType: "MD5", //微信签名方式：
-          paySign: "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
+          appId: data.appId, //公众号名称，由商户传入
+          timeStamp: data.timeStamp, //时间戳，自1970年以来的秒数
+          nonceStr: data.nonceStr, //随机串
+          package: data.package1,
+          signType: data.signType, //微信签名方式：
+          paySign: data.paySign //微信签名
         },
         function(res) {
           if (res.err_msg == "get_brand_wcpay_request:ok") {
             // 使用以上方式判断前端返回,微信团队郑重提示：
             //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+            self.onScanCode();
+          } else {
+            var str = JSON.stringify(res);
+            alert(str);
           }
         }
       );

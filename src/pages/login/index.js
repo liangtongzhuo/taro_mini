@@ -42,6 +42,21 @@ export default class Login extends Component {
     } else {
       try {
         await AV.User.logIn(this.state.phone, this.state.pwd);
+
+        // 储存当前时间戳
+        const currentUser = AV.User.current();
+        const time = Date.now() + '';
+        window.localStorage.setItem("time", time);
+        currentUser.set('time',time);
+        await currentUser.save();
+
+        // const Device = AV.Object.extend("Device");
+        // const device = new Device();
+        // device.set("device", time);
+        // device.set("user", AV.User.current());
+        // await device.save();
+
+
         // 登录成功
         if (this.isWeixn()) {
           const redirect_uri = encodeURIComponent(
