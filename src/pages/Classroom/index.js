@@ -45,6 +45,7 @@ export default class Classroom extends Component {
         // 查询课程下面的视频
         const Sub_video = new AV.Query("Sub_video");
         Sub_video.equalTo("course_id", course);
+        Sub_video.limit(1000);
         const sub_video = await Sub_video.find(this.state.courseId);
         await this.setState({ course, subVideos: sub_video });
         // 查询是否支付
@@ -354,10 +355,9 @@ export default class Classroom extends Component {
                 本节课：
                 {this.getSubVideo("title")}
               </View>
-              {/* <Text className="sub-title content" id="people">
-                本节课主要内容：
+              <Text className="sub-title content" id="people">
                 {this.getSubVideo("content")}
-              </Text> */}
+              </Text>
             </View>
           </View>
         </View>

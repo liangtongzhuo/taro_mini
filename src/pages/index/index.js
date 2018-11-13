@@ -65,9 +65,9 @@ export default class Index extends Component {
           indicatorColor="#fff"
           indicatorActiveColor="rgba(30, 176, 236, 1);"
           vertical={false}
-          circular
-          indicatorDots
-          autoplay
+          // circular
+          // indicatorDots
+          // autoplay
         >
           <SwiperItem style=" height:200px">
             <Image className="banner" src='http://lc-8emscetg.cn-n1.lcfile.com/1d266fbc28a6bc28fca8.jpeg' />

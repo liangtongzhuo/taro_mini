@@ -28,7 +28,7 @@ export default class Fool extends Component {
             {
               image:
                 "https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png",
-              value: "地址:上海徐虹口区"
+              value: "地址:上海虹口区"
             }
           ]}
         />
