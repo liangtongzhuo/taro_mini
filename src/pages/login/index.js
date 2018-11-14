@@ -45,9 +45,9 @@ export default class Login extends Component {
 
         // 储存当前时间戳
         const currentUser = AV.User.current();
-        const time = Date.now() + '';
+        const time = Date.now() + "";
         window.localStorage.setItem("time", time);
-        currentUser.set('time',time);
+        currentUser.set("time", time);
         await currentUser.save();
 
         // const Device = AV.Object.extend("Device");
@@ -55,7 +55,6 @@ export default class Login extends Component {
         // device.set("device", time);
         // device.set("user", AV.User.current());
         // await device.save();
-
 
         // 登录成功
         if (this.isWeixn()) {
@@ -73,10 +72,7 @@ export default class Login extends Component {
         if (error.code === 219) {
           this.setState({ isOpened: true, text: "用户名和密码不匹配" });
         } else {
-          this.setState({
-            isOpened: true,
-            text: "登录失败次数超过限制"
-          });
+          this.setState({ isOpened: true, text: "用户名和密码不匹配" });
         }
         console.log(error.code);
       }

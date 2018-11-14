@@ -243,8 +243,16 @@ export default class Classroom extends Component {
   weixinPlay(data) {
     // alert(data);
     // const data1 = JSON.parse(data);
-    var str = JSON.stringify(data);
-    alert("data:" + str);
+    // var str = JSON.stringify({
+    //   appId: data.appId, //公众号名称，由商户传入
+    //   timeStamp: data.timeStamp, //时间戳，自1970年以来的秒数
+    //   nonceStr: data.nonceStr, //随机串
+    //   package: data.package1,
+    //   signType: data.signType, //微信签名方式：
+    //   paySign: data.paySign
+    // });
+    // alert("data:" + str);
+    
     const self = this;
     function onBridgeReady() {
       WeixinJSBridge.invoke(
@@ -263,8 +271,7 @@ export default class Classroom extends Component {
             //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
             self.onScanCode();
           } else {
-            var str = JSON.stringify(res);
-            alert(str);
+            alert('取消支付');
           }
         }
       );
