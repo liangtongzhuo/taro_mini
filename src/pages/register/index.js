@@ -21,6 +21,7 @@ export default class Register extends Component {
       phone: "",
       code: "",
       pwd: "",
+      invite: '',
       time: 0,
       interval: null
     };
@@ -93,6 +94,7 @@ export default class Register extends Component {
         currentUser.setUsername(this.state.phone);
         currentUser.setPassword(this.state.pwd);
         currentUser.set("name", this.state.name);
+        currentUser.set("invite", this.state.invite);
         const time = Date.now() + '';
         window.localStorage.setItem("time", time);
         currentUser.set('time',time);
@@ -156,7 +158,7 @@ export default class Register extends Component {
               name="code"
               title="验证码"
               type="text"
-              placeholder="请查看手机验证码"
+              placeholder="请输入验证码"
               maxlength="6"
               value={this.state.code}
               onChange={this.handleChange.bind(this, "code")}
@@ -170,6 +172,15 @@ export default class Register extends Component {
               value={this.state.pwd}
               onChange={this.handleChange.bind(this, "pwd")}
             />
+            <AtInput
+              name="invite"
+              title="邀请码"
+              type="text"
+              placeholder="非必填"
+              value={this.state.invite}
+              onChange={this.handleChange.bind(this, "invite")}
+            />
+            
             <AtButton onClick={this.onSubmit.bind(this)}>注册</AtButton>
           </AtForm>
         </View>

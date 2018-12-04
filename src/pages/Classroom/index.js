@@ -80,6 +80,13 @@ export default class Classroom extends Component {
   componentDidShow() {
     // 设置不可下载
     document.getElementById("video").setAttribute("controlsList", "nodownload");
+
+    setTimeout(() => {
+      document
+        .getElementById("video")
+        .setAttribute("controlsList", "nodownload");
+      this.onVideo();
+    }, 1000);
   }
 
   componentDidHide() {}
@@ -215,6 +222,7 @@ export default class Classroom extends Component {
   }
   // 用于判断是否可以播放
   isPlay() {
+    if (!AV.User.current()) return;
     if (this.state.subVideos.length == 0) return;
     const subVideo = this.state.subVideos[this.state.index];
     if (subVideo.get("pay") == 0) {
@@ -222,8 +230,15 @@ export default class Classroom extends Component {
     } else if (this.state.pay === 1) {
       return subVideo.get("video");
     }
-
     return false;
+  }
+  onVideo() {
+    if (!AV.User.current()) {
+      this.setState({ isOpened: true, text: "登录后才能观看" });
+    }
+    setTimeout(() => {
+      this.setState({ isOpened: false });
+    }, 10000);
   }
   // scan
   onScanCode() {
@@ -252,7 +267,7 @@ export default class Classroom extends Component {
     //   paySign: data.paySign
     // });
     // alert("data:" + str);
-    
+
     const self = this;
     function onBridgeReady() {
       WeixinJSBridge.invoke(
@@ -271,7 +286,7 @@ export default class Classroom extends Component {
             //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
             self.onScanCode();
           } else {
-            alert('取消支付');
+            alert("取消支付");
           }
         }
       );
@@ -345,7 +360,7 @@ export default class Classroom extends Component {
           src="http://lc-8emscetg.cn-n1.lcfile.com/1d2b680e87c3c5338482.png"
         />
         <View className="content">
-          <View className="card">
+          <View className="card" onClick={this.onVideo.bind(this)}>
             <Video
               src={this.isPlay()}
               autoplay={false}
