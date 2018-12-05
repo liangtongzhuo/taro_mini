@@ -1,0 +1,74 @@
+.me {
+  .title {
+    display: block;
+    width: 100%;
+    margin-left: 5px;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #666;
+    margin-top: 1.5rem;
+  }
+  .sub-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: #999;
+  }
+  .list {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .button-list {
+    margin-top: 50px;
+    padding: 10px;
+    button {
+      margin: 0 10px 20px 10px;
+      background-color: #ffffff;
+      color: #1eb0ec;
+    }
+    button:after {
+      border-color: #1eb0ec;
+    }
+    #click-button {
+      background-color: #1eb0ec;
+      color: #ffffff;
+    }
+  }
+
+  // 大于 400 pc 端了
+  @media screen and (min-width: 500px) {
+    .title {
+      font-size: 17px !important;
+      margin-top: 20px !important;
+    }
+    .sub-title {
+      font-size: 11px !important;
+    }
+    .list {
+      margin-top: 5px !important;
+    }
+    .button-list {
+      margin-top: 0px !important;
+      button {
+        margin: 0 10px 0 0;
+      }
+      button:after {
+        border-width: 0.03rem;
+      }
+      #click-button {
+      }
+    }
+
+    .swiper__container {
+      height: 350px !important;
+    }
+    .swiper__wrapper {
+      height: 350px !important;
+    }
+    .swiper__item {
+      height: 350px !important;
+    }
+  }
+}

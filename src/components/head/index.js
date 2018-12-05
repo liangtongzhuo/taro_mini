@@ -23,6 +23,16 @@ export default class Head extends Component {
     AV.User.logOut();
     window.location.href = "/";
   }
+  onMe() {
+    Taro.navigateTo({
+      url: "/pages/me/index"
+    });
+  }
+  onSkipFindPassword() {
+    Taro.navigateTo({
+      url: "/pages/findPassword/index"
+    });
+  }
   render() {
     const currentUser = AV.User.current();
 
@@ -32,7 +42,12 @@ export default class Head extends Component {
           你好：
           {currentUser.get("name")}
         </Text>
-
+        <Button onClick={this.onMe.bind(this)} size="mini" type="primary">
+          我的课程
+        </Button>
+        <Button onClick={this.onSkipFindPassword.bind(this)} size="mini" type="primary">
+          修改密码
+        </Button>
         <Button onClick={this.onSignOut.bind(this)} size="mini" type="primary">
           退出
         </Button>

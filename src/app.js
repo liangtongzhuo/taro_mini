@@ -19,7 +19,8 @@ class App extends Component {
       "/pages/classroom/index",
       "/pages/login/index",
       "/pages/register/index",
-      "/pages/findPassword/index"
+      "/pages/findPassword/index",
+      "/pages/me/index"
     ],
     window: {
       backgroundTextStyle: "light",
@@ -44,8 +45,6 @@ class App extends Component {
 
   async componentDidShow() {
     const code = queryString.parseUrl(window.location.href).query.code;
-    // alert("code:" + code);
-    // alert(window.location.href);
     if (this.isWeixn && AV.User.current() && code) {
       try {
         const res = await axios.post("/wechat/jsapipay/authcenter", {

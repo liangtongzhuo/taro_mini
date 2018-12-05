@@ -14,19 +14,23 @@
     display: flex;
     width: 70%;
     justify-content: flex-end;
+    flex-wrap: wrap;
     align-items: center;
-    height: 100px;
+    // height: 100px;
+    padding-bottom: 10px;
     span {
       margin-top: 50px;
       margin-right: 20px;
     }
     button {
-      // height: 100px;
       background-color: #ffffff;
       color: rgba(30, 176, 236, 1);
-      margin-top: 50px;
+      margin-top: 20px;
+      margin-right: 10px;
+      margin-bottom: 5px;
       margin-left: 0;
-      margin-right: 20px;
+      padding: 0 10px 0 10px;
+      
     }
     button:after {
       border-color: rgba(30, 176, 236, 1);

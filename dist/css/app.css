@@ -49,9 +49,11 @@ button:hover {
   width: 70%;
   -webkit-justify-content: flex-end;
           justify-content: flex-end;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
   -webkit-align-items: center;
           align-items: center;
-  height: 2.13333rem;
+  padding-bottom: 0.21333rem;
 }
 
 .head .right span {
@@ -62,9 +64,11 @@ button:hover {
 .head .right button {
   background-color: #ffffff;
   color: #1eb0ec;
-  margin-top: 1.06667rem;
+  margin-top: 0.42667rem;
+  margin-right: 0.21333rem;
+  margin-bottom: 0.10667rem;
   margin-left: 0;
-  margin-right: 0.42667rem;
+  padding: 0 0.21333rem 0 0.21333rem;
 }
 
 .head .right button:after {
@@ -652,4 +656,88 @@ button:hover {
 .find-password .card .form .findPassword {
   color: #1eb0ec;
   font-size: 0.7rem;
+}
+.me .title {
+  display: block;
+  width: 100%;
+  margin-left: 0.10667rem;
+  text-align: left;
+  font-size: 1.4rem;
+  color: #666;
+  margin-top: 1.5rem;
+}
+
+.me .sub-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: #999;
+}
+
+.me .list {
+  margin-top: 1rem;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.me .button-list {
+  margin-top: 1.06667rem;
+  padding: 0.21333rem;
+}
+
+.me .button-list button {
+  margin: 0 0.21333rem 0.42667rem 0.21333rem;
+  background-color: #ffffff;
+  color: #1eb0ec;
+}
+
+.me .button-list button:after {
+  border-color: #1eb0ec;
+}
+
+.me .button-list #click-button {
+  background-color: #1eb0ec;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 500px) {
+  .me .title {
+    font-size: 0.36267rem !important;
+    margin-top: 0.42667rem !important;
+  }
+
+  .me .sub-title {
+    font-size: 0.23467rem !important;
+  }
+
+  .me .list {
+    margin-top: 0.10667rem !important;
+  }
+
+  .me .button-list {
+    margin-top: 0 !important;
+  }
+
+  .me .button-list button {
+    margin: 0 0.21333rem 0 0;
+  }
+
+  .me .button-list button:after {
+    border-width: 0.03rem;
+  }
+
+  .me .swiper__container {
+    height: 7.46667rem !important;
+  }
+
+  .me .swiper__wrapper {
+    height: 7.46667rem !important;
+  }
+
+  .me .swiper__item {
+    height: 7.46667rem !important;
+  }
 }
