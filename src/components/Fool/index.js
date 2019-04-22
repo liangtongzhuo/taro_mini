@@ -37,7 +37,12 @@ export default class Fool extends Component {
           <Text className="tail-title">上海鹏祥医学科技有限公司</Text>
           <Text className="tail-title">© 沪ICP备18040972号-1</Text>
         </View>
+
+        <View style="width:300px;margin:0 auto; padding:20px 0;font-size: 15px;">
+          <a target="_blank" href=" " style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">< img src="http://lc-8emscetg.cn-n1.lcfile.com/69e10441d4e02e5f8fb5/gongan.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">沪公网安备 31011002003701号</p ></a >
+        </View>
       </View>
+      
     );
   }
 }
